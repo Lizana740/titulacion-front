@@ -37,7 +37,7 @@ jobs:
        username: ${{env.USER}}
        port: ${{env.PORT}}
        key: ${{ secrets.KEY }}
-       source: "dist/proyecto-gps-frontend/*"
+       source: "dist/front/*"
        target: "frontend"
  
     - name: SSH Command
@@ -47,7 +47,7 @@ jobs:
        USER: ${{env.USER}}
        PRIVATE_SSH_KEY: ${{ secrets.KEY }}
        COMMAND:  sudo rm -r /opt/lampp/htdocs/*.*; 
-                 sudo mv frontend/dist/proyecto-gps-frontend/*.* /opt/lampp/htdocs/
+                 sudo mv frontend/dist/front/*.* /opt/lampp/htdocs/
                 
        
        
