@@ -10,7 +10,7 @@ on:
     branches: [ "main" ]
 env: 
   PORT : 22
-  HOST: 52.55.243.83
+  HOST: 44.201.124.245
   USER: ubuntu
   
 jobs:
