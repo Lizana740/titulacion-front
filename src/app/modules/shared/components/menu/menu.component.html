@@ -1,0 +1,113 @@
+
+   <div>
+    <nav class="navbar navbar-expand navbar-dark bg-dark ">
+      <!-- Navbar Brand-->
+      <a class="navbar-brand ps-3" href="index.html">Sistema de Monitoreo</a>
+      <!-- Sidebar Toggle-->
+      <button class="btn" (click)="snav.toggle()">
+        <i class="p-toolbar-separator pi pi-bars mr-2" style="vertical-align: middle;color:white"></i>
+      </button>
+
+      <!-- Navbar Search-->
+      <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+        <div class="input-group">
+          <input class="form-control" type="text" placeholder="Buscar por..." aria-label="Buscar por..."
+            aria-describedby="btnNavbarSearch" />
+          <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="pi pi-search"></i></button>
+        </div>
+      </form>
+      <!-- Navbar-->
+      <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+        <li class="nav-item dropdown">
+
+          <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            <i class="pi pi-user"></i>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="#!">Perfil</a></li>
+            <li><a class="dropdown-item" href="#!">Actividad</a></li>
+            <li>
+              <hr class="dropdown-divider" />
+            </li>
+
+
+            <li><a class="dropdown-item" (click)="exit()">Salir</a></li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+        <li class="nav-item dropdown">
+
+          <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            <i class="pi pi-user"></i>
+          </a>
+          <select class="dropdown-menu dropdown-menu-end" (change)="onChangeRole($event)" >
+            <option *ngFor="let i of roles" [value]="i.valor | lowercase" [selected]="(i.valor  | uppercase ) === rol">{{ rol.valor | titlecase }}</option>
+          </select>
+        </li>
+      </ul>
+    </nav>
+    <mat-sidenav-container style="height: 100vh ;" class="example-sidenav-container" color="success"
+    [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+
+    <mat-sidenav [opened]=" !mobileQuery.matches" #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+        [fixedInViewport]="mobileQuery.matches" >
+        <mat-list role="list" *ngFor="let item of items">
+            <div *ngIf="item.items; then thenBlock else elseBlock"></div>
+            <ng-template #elseBlock>
+                <mat-list-item role="listitem" class="ms-1" [routerLink]="item.route" class="mat-list-item mat-focus-indicator ng-tns-c142-12 ng-star-inserted">
+                    {{item.label}}
+                </mat-list-item>
+            </ng-template>
+            <ng-template #thenBlock>
+                <mat-expansion-panel dense>
+                    <mat-expansion-panel-header>
+                        {{item.label}}
+                    </mat-expansion-panel-header>
+                    <mat-nav-list dense *ngFor="let option of item.items" class="mat-nav-list mat-list-base ng-tns-c142-12">
+                        <div *ngIf="option.items; then a else b"></div>
+                        <ng-template #a>
+                            <mat-expansion-panel  dense>
+                                <mat-expansion-panel-header>
+                                    <span>{{option.label}}</span>
+                                </mat-expansion-panel-header>
+                                <mat-nav-list dense *ngFor="let o of option.items">
+                                    <mat-list-item [routerLink]="o.route" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                                        <span matBadgeColor="warn" matBadgeOverlap="false"  >{{o.label}}</span>
+                                    </mat-list-item>
+                                </mat-nav-list>
+                            </mat-expansion-panel>
+                        </ng-template>
+                        <ng-template #b>
+                            <mat-list-item routerLinkActive="light-blue accent-2" [routerLink]="option.route" >
+                                <i [class]="option.icon"></i>
+                                <span matBadgeColor="warn" matBadgeOverlap="false" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">{{option.label}}</span>
+                              </mat-list-item>
+                        </ng-template>
+                    </mat-nav-list>
+                </mat-expansion-panel>
+            </ng-template>
+          </mat-list>
+    </mat-sidenav>
+
+    <div class="container pt-3">
+      <div class="row" >
+        <p-breadcrumb [model]="items"></p-breadcrumb>
+      </div>
+    </div>
+    <div class="container pt-3">
+      <div class="row">
+          <router-outlet></router-outlet>
+      </div>
+    </div>
+
+</mat-sidenav-container>
+   </div>
+
+<app-footer></app-footer>
+
+
+
+

@@ -1,0 +1,149 @@
+<div class="container">
+  <div class="card">
+    <p-table #dt2 [value]="estaciones" dataKey="id" [scrollable]="true" scrollHeight="400px"
+        [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[15,25,50]" [loading]="loading"
+        [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [globalFilterFields]="['nombre','rut','correo','status']">
+        <ng-template pTemplate="caption">
+          <div class="row">
+            <div class="col">
+              <div class="flex">
+                <span class="p-input-icon-left ml-auto">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text"  placeholder="Buscar" />
+                </span>
+            </div>
+            </div>
+            <div class="col text" ALIGN ="right">
+              <div class="flex">
+                <button class="btn btn-success ml-auto" (click)="this.display =true">Agregar</button>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Nombre</th>
+                <th>Ubicacion</th>
+                <th style="width: 6rem">Acciones</th>
+            </tr>
+            <tr>
+                <th>
+                    <p-columnFilter type="text" field="nombre"></p-columnFilter>
+                </th>
+                <th>
+                    <p-columnFilter type="text" field="ubicacion"></p-columnFilter>
+                </th>
+                <th>
+
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-estacion>
+            <tr>
+                <td>
+                    {{estacion.nombre}}
+                </td>
+                <td>
+                    <span class="image-text">{{estacion.ubicacion}}</span>
+                </td>
+                <td>
+                  <div class="row">
+                    <button pButton type="button"(click)="delete(estacion.id_estacion)" class="p-button-raised p-button-rounded" icon="pi pi-trash" style="margin-right: 5px;"></button>
+                    <button pButton type="button"(click)="asignar(estacion.id_estacion)" class="p-button-raised p-button-rounded" icon="pi pi-user-plus" style="margin-right: 5px;"></button>
+                    <button pButton type="button" class="p-button-raised p-button-rounded" icon="pi pi-pencil"></button>
+
+                  </div>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="5">No hay estaciones ingresadas.</td>
+            </tr>
+        </ng-template>
+    </p-table>
+  </div>
+</div>
+
+<p-dialog class="m-3 mt-3" [(visible)]="display" header="Agregar Estación" [style]="{width: '60vw', height : '40vw'}">
+  <form class="mb-4" [formGroup]="formulario">
+    <br>
+    <div class="container">
+      <div class="row">
+        <h2>Nombre</h2>
+        <div class="col-sm-10">
+          <mat-form-field appearance="outline" style="width: 100% ;">
+            <mat-label>Ingrese nombre de la estación</mat-label>
+            <input matInput placeholder="Nombre" formControlName="nombre" required>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <h2>Ubicación</h2>
+        <div class="col-sm-10">
+          <mat-form-field appearance="outline" style="width: 100% ;">
+            <mat-label>Ingrese ubicación</mat-label>
+            <input matInput placeholder="ubicacion" formControlName="ubicacion" required>
+          </mat-form-field>
+        </div>
+      </div>
+
+    </div>
+
+
+  </form>
+  <ng-template pTemplate="footer">
+    <button class="btn" (click)="display =!display"  > Cancelar</button>
+    <button  class="btn" (click)="add()" > Agregar</button>
+    </ng-template>
+</p-dialog>
+
+<p-dialog class="m-3 mt-3" [(visible)]="displayAsignar" header="Asignar Trabajador " [style]="{width: '60vw', height : '40vw'}">
+  <mat-tab-group>
+    <mat-tab label="Planta">
+      <p-table [value]="lista" >
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Nombre</th>
+                <th></th>
+                <th>Category</th>
+                <th>Quantity</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+            <tr>
+                <td>{{product.code}}</td>
+                <td>{{product.name}}</td>
+                <td>{{product.category}}</td>
+                <td>{{product.quantity}}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+
+    </mat-tab>
+    <mat-tab label="Mantenedores">
+      <p-table [value]="lista" >
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Estado</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+            <tr>
+                <td>{{product.name}}</td>
+                <td>{{product.category}}</td>
+                <td>{{product.quantity}}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+    </mat-tab>
+  </mat-tab-group>
+  <ng-template pTemplate="footer">
+    <button class="btn" (click)="displayAsignar =!displayAsignar"  > Cancelar</button>
+    <button  class="btn"  (click)="displayAsignar =!displayAsignar"> Agregar</button>
+    </ng-template>
+</p-dialog>
+
