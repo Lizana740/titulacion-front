@@ -24,14 +24,14 @@ const routes: Routes = [
     data:{breadcrumb:'inicio'},
     children : [
       {
-        path:'instalacion',
-         data: {breadcrumb: {skip : true}},
+        path:'estacion',
+        data: {breadcrumb: {skip : true}, only:['ADMINISTRADOR']},
         loadChildren: () => import('./modules/instalacion/instalacion.module').then(m => m.InstalacionModule),
 
        },
        {
         path:'usuario',
-        data: {breadcrumb: {skip : true}},
+        data: {breadcrumb: {skip : true},only:['ADMINISTRADOR']},
         loadChildren: () => import('./modules/usuario/usuario.module').then(m => m.UsuarioModule),
 
        },
@@ -39,7 +39,11 @@ const routes: Routes = [
         path:'sensor',
         data: {breadcrumb: {skip : true}},
         loadChildren: () => import('./modules/sensor/sensor.module').then(m => m.SensorModule),
-
+       },
+       {
+        path:'actuador',
+        data: {breadcrumb: {skip : true}},
+        loadChildren: () => import('./modules/actuador/actuador.module').then(m => m.ActuadorModule),
        },
        {
         path:'perfil',

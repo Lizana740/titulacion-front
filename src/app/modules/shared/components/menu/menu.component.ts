@@ -57,8 +57,7 @@ export class MenuComponent implements OnInit {
   ngOnInit() {
     let u:any = this.autentificacion.infoUser();
     this.roles = u.rol;
-
-    console.log(localStorage.getItem("rol"));
+    console.log("Roles",this.roles[0])
     if(!localStorage.getItem("rol")){
       this.rol = this.roles[0].valor;
     }else{

@@ -22,21 +22,22 @@ export const administrador = [
     {
       label: 'Estaciones',
       items: [
-          { label: 'Ver Estaciones', icon: 'pi pi-fw pi-users', route: 'instalacion/listar' },
+          { label: 'Ver Estaciones', icon: 'pi pi-fw pi-users', route: 'estacion/listar' },
       ]
   },
     {
       label: 'Estadisticas',
       items: [
           { label: 'Mediciones', icon: 'pi pi-chart-bar', route: 'medicion/listar' },
-          { label: 'Actuadores', icon: 'pi pi-fw pi-users', route: 'usuario/listar' },
+          { label: 'Reporte de Mediciones', icon: 'pi pi pi-chart-bar', route: 'reporte-medicion' },
+          { label: 'Reporte de Estación', icon: 'pi pi pi-chart-bar', route: 'reporte-estacion' },
       ]
     },
     {
         label: 'Mantenedores',
         items: [
             { label: 'Sensores', icon: 'pi pi-fw pi-users', route: 'sensor/listar' },
-            { label: 'Actuadores', icon: 'pi pi-fw pi-users', route: 'usuario/listar' },
+            { label: 'Actuadores', icon: 'pi pi-fw pi-users', route: 'actuador/listar' },
         ]
     },
     {
@@ -46,10 +47,21 @@ export const administrador = [
       ]
   }
 
-
 ];
 
+export const mantenedor = [
+  {
+      label: 'Inicio',
+      icon: 'pi pi-pw pi-home',
+      route: '/mantenedor'
+
+  },
+  {
+    label: 'Mis Estaciones',
+    items: [
+        { label: 'Ver Estaciones', icon: 'pi pi-fw pi-users', route: 'instalacion/listar' },
+    ]
+}
 
 
-
-
+];

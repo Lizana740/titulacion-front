@@ -44,46 +44,57 @@
             <i class="pi pi-user"></i>
           </a>
           <select class="dropdown-menu dropdown-menu-end" (change)="onChangeRole($event)" >
-            <option *ngFor="let i of roles" [value]="i.valor | lowercase" [selected]="(i.valor  | uppercase ) === rol">{{ rol.valor | titlecase }}</option>
+            <option *ngFor="let i of roles" [value]="i.valor | lowercase" [selected]="(i.valor  | uppercase ) === rol"> {{ rol | titlecase}} </option>
           </select>
         </li>
       </ul>
     </nav>
-    <mat-sidenav-container style="height: 100vh ;" class="example-sidenav-container" color="success"
-    [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+    <mat-sidenav-container style="height: 100vh;"  color="success"
+    [style.marginTop.px]="mobileQuery.matches ? 56 : 0"
 
-    <mat-sidenav [opened]=" !mobileQuery.matches" #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
-        [fixedInViewport]="mobileQuery.matches" >
+    >
+
+    <mat-sidenav [opened]=" !mobileQuery.matches"
+        #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+        [fixedInViewport]="mobileQuery.matches"
+        class="bg-dark"
+        style = "color: red;"
+        >
         <mat-list role="list" *ngFor="let item of items">
             <div *ngIf="item.items; then thenBlock else elseBlock"></div>
             <ng-template #elseBlock>
-                <mat-list-item role="listitem" class="ms-1" [routerLink]="item.route" class="mat-list-item mat-focus-indicator ng-tns-c142-12 ng-star-inserted">
+                <mat-list-item role="listitem" class="ms-1"
+                [routerLink]="item.route"
+                class="mat-list-item mat-focus-indicator ng-tns-c142-12 ng-star-inserted"
+                style="color:white"
+                >
+
                     {{item.label}}
                 </mat-list-item>
             </ng-template>
             <ng-template #thenBlock>
-                <mat-expansion-panel dense>
-                    <mat-expansion-panel-header>
+                <mat-expansion-panel  [class.mat-elevation-z0]="true" dense  class="bg-dark" style="color:white"  >
+                    <mat-expansion-panel-header class="bg-dark" style="color:white">
                         {{item.label}}
                     </mat-expansion-panel-header>
-                    <mat-nav-list dense *ngFor="let option of item.items" class="mat-nav-list mat-list-base ng-tns-c142-12">
+                    <mat-nav-list dense *ngFor="let option of item.items" class="mat-nav-list mat-list-base ng-tns-c142-12"  class="bg-dark" style="color:white" >
                         <div *ngIf="option.items; then a else b"></div>
                         <ng-template #a>
-                            <mat-expansion-panel  dense>
-                                <mat-expansion-panel-header>
+                            <mat-expansion-panel  dense >
+                                <mat-expansion-panel-header  style="color:white" >
                                     <span>{{option.label}}</span>
                                 </mat-expansion-panel-header>
                                 <mat-nav-list dense *ngFor="let o of option.items">
                                     <mat-list-item [routerLink]="o.route" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                                        <span matBadgeColor="warn" matBadgeOverlap="false"  >{{o.label}}</span>
+                                        <span matBadgeColor="warn" matBadgeOverlap="false"  style="color:white" >{{o.label}}</span>
                                     </mat-list-item>
                                 </mat-nav-list>
                             </mat-expansion-panel>
                         </ng-template>
                         <ng-template #b>
                             <mat-list-item routerLinkActive="light-blue accent-2" [routerLink]="option.route" >
-                                <i [class]="option.icon"></i>
-                                <span matBadgeColor="warn" matBadgeOverlap="false" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">{{option.label}}</span>
+                                <i [class]="option.icon" style="color:white" ></i>
+                                <span matBadgeColor="warn" matBadgeOverlap="false" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" style="color:white" >{{option.label}}</span>
                               </mat-list-item>
                         </ng-template>
                     </mat-nav-list>
@@ -92,16 +103,18 @@
           </mat-list>
     </mat-sidenav>
 
-    <div class="container pt-3">
-      <div class="row" >
+    <div class="row">
+      <div class="col-md-12 mt-2" >
         <p-breadcrumb [model]="items"></p-breadcrumb>
       </div>
     </div>
-    <div class="container pt-3">
-      <div class="row">
+    <div class="row">
+      <div class="col-md-12 mt-2">
+
           <router-outlet></router-outlet>
       </div>
-    </div>
+
+  </div>
 
 </mat-sidenav-container>
    </div>
