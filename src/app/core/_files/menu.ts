@@ -22,7 +22,7 @@ export const administrador = [
     {
       label: 'Estaciones',
       items: [
-          { label: 'Ver Estaciones', icon: 'pi pi-fw pi-users', route: 'estacion/listar' },
+          { label: 'Ver Estaciones', icon: 'pi pi-fw pi-building', route: 'estacion/listar' },
       ]
   },
     {
@@ -40,6 +40,12 @@ export const administrador = [
             { label: 'Actuadores', icon: 'pi pi-fw pi-users', route: 'actuador/listar' },
         ]
     },
+    {
+      label: 'Planes',
+      items: [
+          { label: 'Crear', icon: 'pi pi-fw pi-users', route: 'sensor/listar' },
+      ]
+  },
     {
       label: 'Cuentas',
       items: [
@@ -61,7 +67,13 @@ export const mantenedor = [
     items: [
         { label: 'Ver Estaciones', icon: 'pi pi-fw pi-users', route: 'instalacion/listar' },
     ]
-}
+  },
+  {
+    label: 'Configuración',
+    items: [
+        { label: 'Ver Estaciones', icon: 'pi pi-fw pi-users', route: 'instalacion/listar' },
+    ]
+  }
 
 
 ];

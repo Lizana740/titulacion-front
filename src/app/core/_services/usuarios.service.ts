@@ -18,4 +18,8 @@ export class UsuariosService {
   addUsuario(body:any){
     return this.genericServices.postGeneric(this.url, "", body);
   }
+
+  obtenerUsuariosRol(id_rol:number){
+    return this.genericServices.getGeneric(this.url+"trabajador/",id_rol )
+  }
 }

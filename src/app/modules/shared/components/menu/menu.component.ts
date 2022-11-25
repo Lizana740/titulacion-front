@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { MenuItem } from 'primeng/api';
-import { administrador} from 'src/app/core/_files/menu'
+import { administrador, mantenedor} from 'src/app/core/_files/menu'
 import { ActivatedRoute, NavigationEnd, NavigationError, NavigationStart, Router,Event } from '@angular/router';
 import { AutentificacionService } from 'src/app/core/_services/autentificacion.service';
 @Component({
@@ -69,6 +69,9 @@ export class MenuComponent implements OnInit {
       case "ADMINISTRADOR":
         this.items = administrador
         break;
+        case "MANTENEDOR":
+          this.items = mantenedor
+          break;
 
     }
     this.router.events.subscribe((event: Event) => {
@@ -97,7 +100,7 @@ export class MenuComponent implements OnInit {
     console.log("cAMBIO DE rol", localStorage.getItem("rol"));
 
     this.url_role = localStorage.getItem("rol");
-    this.router.navigate(['administrador'])
+    this.router.navigate(['app'])
       .then(() => {
         window.location.reload();
       });

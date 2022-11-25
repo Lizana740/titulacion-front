@@ -19,6 +19,7 @@ import { MenuModule } from 'primeng/menu';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { SidebarModule } from 'primeng/sidebar';
 import {ButtonModule} from 'primeng/button';
+import { AutoCompleteModule } from 'primeng/autocomplete';
 /* END */
 
 /* MATERIAL */
@@ -30,7 +31,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
+import {MatButtonModule} from '@angular/material/button';
+
 /* END */
 
 /*COMPONENTS*/
@@ -65,6 +68,8 @@ import { FooterComponent } from './components/footer/footer.component';
     AvatarModule,
     BreadcrumbModule,
     MenuModule,
+    MatButtonModule,
+    AutoCompleteModule,
   ],
   providers: [MessageService],
   bootstrap: [],
@@ -95,6 +100,9 @@ import { FooterComponent } from './components/footer/footer.component';
     CommonModule,
     PanelMenuModule,
     BreadcrumbModule,
+    MatButtonModule,
+    MatIconModule,
+    AutoCompleteModule
   ],
 })
 export class SharedModule {}

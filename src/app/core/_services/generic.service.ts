@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class GenericService {
   private bdd:string = 'http://44.201.124.245:3000/api';
+  //private bdd:string = 'http://localhost:3000/api';
   constructor(private httpClient:HttpClient) { }
 
 

@@ -18,7 +18,7 @@
           <td>{{lista.nombre}}</td>
           <td>{{lista.ubicacion }}</td>
           <td>{{lista.actuadores.length }}</td>
-          <td class="row"><button (click)="add(lista.id_estacion)" pButton type="button" class="p-button-raised p-button-rounded" icon="pi pi-plus-circle"></button></td>
+          <td > <button (click)="add(lista.id_estacion)"  class="btn btn-success"  ><i class="pi pi-plus-circle"></i></button></td>
       </tr>
   </ng-template>
   <ng-template pTemplate="rowexpansion" let-ordes>
@@ -42,9 +42,9 @@
                               <td>{{order.tipo}}</td>
                               <td>{{order.descripcion}}</td>
                               <td class="row">
-                                <button pButton type="button" (click)="eliminarActuador(order.id_actuador)" class="p-button-raised p-button-rounded col" icon="pi pi-trash" style="margin-right: 5px;"></button>
+                                <button  class="btn btn-danger col" (click)="eliminarActuador(order.id_actuador)"  style="margin-right: 5px;"><i class="pi pi-trash"></i></button>
 
-                                <button pButton type="button" class="p-button-raised p-button-rounded col" icon="pi pi-pencil"></button>
+                                <button  class="btn btn-warning col" > <i class="pi pi-pencil" style="color:white"></i></button>
                               </td>
                           </tr>
                       </ng-template>

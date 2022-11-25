@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EstacionService } from 'src/app/core/_services/estacion.service';
 import { FormBuilder, Validators,FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-listar',
   templateUrl: './listar.component.html',
@@ -14,7 +15,8 @@ export class ListarComponent implements OnInit {
   loading: boolean = true;
   displayAsignar: boolean  = false;
   constructor(private estacionServices: EstacionService,
-        private _formBuilder: FormBuilder) { }
+        private _formBuilder: FormBuilder,
+        private router:Router) { }
 
   ngOnInit(): void {
     this.formulario = this._formBuilder.group({
@@ -45,6 +47,6 @@ export class ListarComponent implements OnInit {
     })
   }
   asignar(id_estacion:number){
-    this.displayAsignar = true;
+      this.router.navigate(['app/estacion/trabajadores'])
   }
 }

@@ -25,7 +25,7 @@
             <i class="pi pi-user"></i>
           </a>
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#!">Perfil</a></li>
+            <li><a class="dropdown-item" href="app/perfil">Perfil</a></li>
             <li><a class="dropdown-item" href="#!">Actividad</a></li>
             <li>
               <hr class="dropdown-divider" />
@@ -41,10 +41,10 @@
 
           <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
             aria-expanded="false">
-            <i class="pi pi-user"></i>
+            <i class="pi pi-users"></i>
           </a>
           <select class="dropdown-menu dropdown-menu-end" (change)="onChangeRole($event)" >
-            <option *ngFor="let i of roles" [value]="i.valor | lowercase" [selected]="(i.valor  | uppercase ) === rol"> {{ rol | titlecase}} </option>
+            <option *ngFor="let i of roles" [value]="i.valor | lowercase" [selected]="(i.valor  | uppercase ) === rol"> {{ i.valor | titlecase}} </option>
           </select>
         </li>
       </ul>
