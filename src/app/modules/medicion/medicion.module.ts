@@ -17,5 +17,3 @@ import { ListaComponent } from './components/lista/lista.component';
 })
 export class MedicionModule { }
 
-
-export class helloworldo{}

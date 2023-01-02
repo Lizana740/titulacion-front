@@ -18,16 +18,24 @@
     <p-table [value]="trabajadores.usuarios" >
       <ng-template pTemplate="header">
           <tr>
-              <th>Nombre</th>
-              <th>Rut</th>
-              <th>Correo</th>
+            <th>Rut</th>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Acción</th>
           </tr>
       </ng-template>
       <ng-template pTemplate="body" let-product>
           <tr>
-              <td>{{product.nombre}}</td>
-              <td>{{product.rut}}</td>
-              <td>{{product.correo}}</td>
+            <td style="width: 10%">{{product.rut}}</td>
+            <td>{{product.nombre}} {{product.apellido_paterno}}  {{product.apellido_materno}}</td>
+            <td>{{product.correo}}</td>
+            <td>
+                <div class="row">
+                  <div class="col">
+                    <button class="btn btn-danger "> <i class="pi pi-trash"></i></button>
+                  </div>
+                </div>
+              </td>
           </tr>
       </ng-template>
       <ng-template pTemplate="emptymessage">

@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { MenuItem } from 'primeng/api';
-import { administrador, mantenedor} from 'src/app/core/_files/menu'
+import { administrador, mantenedor, usuario_planta} from 'src/app/core/_files/menu'
 import { ActivatedRoute, NavigationEnd, NavigationError, NavigationStart, Router,Event } from '@angular/router';
 import { AutentificacionService } from 'src/app/core/_services/autentificacion.service';
 @Component({
@@ -72,6 +72,9 @@ export class MenuComponent implements OnInit {
         case "MANTENEDOR":
           this.items = mantenedor
           break;
+        case "USUARIO DE PLANTA":
+          this.items= usuario_planta
+        break;
 
     }
     this.router.events.subscribe((event: Event) => {

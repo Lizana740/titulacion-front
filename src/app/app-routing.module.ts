@@ -50,12 +50,23 @@ const routes: Routes = [
         data: {breadcrumb: {skip : true}},
         loadChildren: () => import('./modules/perfil/perfil.module').then(m => m.PerfilModule),
 
-       }
-       ,
+       },
        {
         path:'medicion',
         data: {breadcrumb: {skip : true}},
         loadChildren: () => import('./modules/medicion/medicion.module').then(m => m.MedicionModule),
+
+       },
+       {
+        path:'factor',
+        data: {breadcrumb: {skip : true}},
+        loadChildren: () => import('./modules/factores/factores.module').then(m => m.FactoresModule),
+
+       },
+       {
+        path:'reporte',
+        data: {breadcrumb: {skip : true}},
+        loadChildren: () => import('./modules/reporte/reporte.module').then(m => m.ReporteModule),
 
        }
     ]

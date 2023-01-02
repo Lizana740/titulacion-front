@@ -18,4 +18,5 @@ export class EstacionService {
   agregarEstacion(body:any){
     return this.genericServices.postGeneric(this.url, "", body);
   }
+
 }

@@ -43,6 +43,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { NotfoundpageComponent } from './components/notfoundpage/notfoundpage.component';
 import { FooterComponent } from './components/footer/footer.component';
 
+
 @NgModule({
   declarations: [
     HomeComponent,
@@ -105,4 +106,6 @@ import { FooterComponent } from './components/footer/footer.component';
     AutoCompleteModule
   ],
 })
-export class SharedModule {}
+export class SharedModule {
+
+}

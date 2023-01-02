@@ -77,3 +77,20 @@ export const mantenedor = [
 
 
 ];
+
+export const usuario_planta = [
+  {
+      label: 'Inicio',
+      icon: 'pi pi-pw pi-home',
+      route: '/planta'
+
+  },
+  {
+    label: 'Mis Estaciones',
+    items: [
+        { label: 'Ver Estaciones', icon: 'pi pi-fw pi-users', route: 'factor/visualizar' },
+    ]
+  },
+
+
+];

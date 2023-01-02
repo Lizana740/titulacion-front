@@ -1,15 +1,4 @@
 <div class="m-3 mt-3">
-  <button
-  type="button"
-  pButton
-  pRipple
-  icon="pi pi-file-excel"
-  (click)=" exportToExcel()"
-  class="p-button-success mr-2"
-  pTooltip="XLS"
-  tooltipPosition="bottom"
-></button>
-<br><br>
   <div class="card">
     <p-table id="season-tble" #dt2 [value]="mediciones" dataKey="id" [scrollable]="true" scrollHeight="400px"
         [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[15,25,50]" [loading]="loading"
@@ -24,12 +13,14 @@
                 <th>Tipo de Sensor</th>
                 <th>Valor</th>
                 <th>Fecha</th>
+                <th>Hora</th>
             </tr>
             <tr>
                 <th>
                     <p-columnFilter type="text" field="ubicacion"></p-columnFilter>
                 </th>
                 <th><p-columnFilter type="text" field="descripcion"></p-columnFilter></th>
+                <th></th>
                 <th></th>
                 <th></th>
             </tr>
@@ -43,10 +34,13 @@
                   <span class="image-text">{{obj.sensor.tipo}}</span>
                 </td>
                 <td>
-                  <span class="image-text">{{obj.valor}}°{{obj.sensor.escala}}</span>
+                  <span class="image-text">{{obj.valor}} {{obj.sensor.escala}}</span>
                 </td>
                 <td>
                   <span class="image-text">{{obj.fecha}} </span>
+                </td>
+                <td>
+                  <span class="image-text">{{obj.fecha.substring(12,16)}} </span>
                 </td>
             </tr>
         </ng-template>
