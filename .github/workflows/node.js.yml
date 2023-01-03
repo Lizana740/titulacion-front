@@ -41,14 +41,6 @@ jobs:
        source: "dist/front/*"
        target: "frontend"
  
-    - name: SSH Command
-      uses: D3rHase/ssh-command-action@v0.2.1
-      with:
-       HOST: ${{env.HOST}}
-       USER: ${{env.USER}}
-       PRIVATE_SSH_KEY: ${{ secrets.KEY }}
-       COMMAND:  sudo rm -r /opt/lampp/htdocs/*.*; 
-                 sudo mv frontend/dist/front/*.* /opt/lampp/htdocs/
                 
        
        
