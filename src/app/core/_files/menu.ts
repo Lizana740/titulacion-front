@@ -23,14 +23,15 @@ export const administrador = [
       label: 'Estaciones',
       items: [
           { label: 'Ver Estaciones', icon: 'pi pi-fw pi-building', route: 'estacion/listar' },
+          { label: 'Ver Factores Abioticos', icon: 'pi pi-fw pi-building', route: 'factor/visualizar' },
+          { label: 'Mediciones', icon: 'pi pi-chart-bar', route: 'medicion/listar' },
       ]
   },
     {
       label: 'Estadisticas',
       items: [
-          { label: 'Mediciones', icon: 'pi pi-chart-bar', route: 'medicion/listar' },
-          { label: 'Reporte de Mediciones', icon: 'pi pi pi-chart-bar', route: 'reporte-medicion' },
-          { label: 'Reporte de Estación', icon: 'pi pi pi-chart-bar', route: 'reporte-estacion' },
+
+          { label: 'Reportes', icon: 'pi pi pi-chart-bar', route: 'reporte/lista' },
       ]
     },
     {

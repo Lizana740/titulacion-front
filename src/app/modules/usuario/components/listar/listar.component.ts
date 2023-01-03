@@ -54,6 +54,9 @@ export class ListarComponent implements OnInit {
   agregar(){
     this.router.navigate(['app/usuario/agregar'])
   }
+  editar(rut:string){
+    this.router.navigate(['app/usuario/editar/'+rut]);
+  }
 
 
 }

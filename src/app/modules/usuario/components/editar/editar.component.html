@@ -1,1 +1,77 @@
-<p>editar works!</p>
+<div class="m-3 mt-3">
+  <div class="card">
+<form class="mb-4" [formGroup]="formulario" (ngSubmit)="add()">
+  <br>
+  <div class="m-3 mt-3">
+    <div class="row">
+      <h3><b> Nombre</b></h3>
+      <div class="col">
+        <div class="col">
+          <mat-form-field appearance="outline" style="width: 100% ;">
+            <mat-label>Ingrese nombre</mat-label>
+            <input matInput placeholder="Nombre" formControlName="nombre" required>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="col">
+        <div class="col">
+          <mat-form-field appearance="outline" style="width: 100% ;">
+            <mat-label>Ingrese apellido paterno</mat-label>
+            <input matInput placeholder="Apellido" formControlName="apellido_paterno" required>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="col">
+        <div class="col">
+          <mat-form-field appearance="outline" style="width: 100% ;">
+            <mat-label>Ingrese apellido materno</mat-label>
+            <input matInput placeholder="Apellido" formControlName="apellido_materno" required>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <h3>Rut</h3>
+        <div class="col">
+          <mat-form-field appearance="outline" style="width: 100% ;">
+            <mat-label>Ingrese su rut</mat-label>
+            <input matInput placeholder="Rut" formControlName="rut" required>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="col">
+        <h3>Correo</h3>
+        <div class="col">
+          <mat-form-field appearance="outline" style="width: 100% ;">
+            <mat-label>Ingrese correo</mat-label>
+            <input matInput placeholder="Correo" formControlName="correo" required>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <h3>Selecione los roles</h3>
+      <div class="col-md-4">
+        <mat-form-field  appearance="outline" style="width: 100% ;">
+          <mat-select placeholder="Roles" formControlName="roles" [(value)]="selectRoles" multiple>
+            <mat-option *ngFor="let item of roles" [value]="item.id_rol">{{item.valor}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row"  >
+        <div class="col-1" >
+          <button class="btn btn-success" type="submit">Guardar</button>
+         </div>
+         <div class="col-2">
+           <button class="btn btn-danger" (click)="cancelar()">Cancelar</button>
+         </div>
+    </div>
+  </div>
+
+
+</form>
+</div>
+</div>

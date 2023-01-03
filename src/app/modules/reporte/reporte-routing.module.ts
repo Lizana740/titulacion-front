@@ -4,7 +4,7 @@ import { VistaComponent } from './components/vista/vista.component';
 
 const routes: Routes = [
   {
-    path: 'listar',
+    path: 'lista',
     component: VistaComponent,
     data: {title: ''}
   }

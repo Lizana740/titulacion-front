@@ -1,22 +1,28 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { saveAs } from 'file-saver';
+
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ReporteService {
-  private url: string = "/reporte/";
-  constructor(private http:HttpClient ) {
+  private url: string = '/reporte/';
+  constructor(private http: HttpClient) {}
+
+  downloadPDF(body: any): any {
+    console.log("DownloadDF")
+    return this.http.post(
+      'http://localhost:3000/api/reporte/general/pdf/',
+      body,
+      { responseType: 'blob' }
+    );
+  }
+  dowloadExcel(body: any): any {
+    return this.http.post(
+      'http://localhost:3000/api/reporte/estacion/excel/',
+      body,
+      { responseType: 'blob' }
+    );
 
   }
-  downloadPDF(): any {
-    var mediaType = 'application/pdf';
-    this.http.get('http://localhost:3000/api/reporte',{ responseType: 'blob' }).subscribe(
-        (response) => {
-            var blob = new Blob([response], { type: mediaType });
-            saveAs(blob, 'report.pdf');
-        },
-        e => { throw Error(e); }
-    );
-}
+
 }

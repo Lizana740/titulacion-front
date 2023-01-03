@@ -12,6 +12,9 @@ export class UsuariosService {
   getUsuarios(){
     return this.genericServices.getGeneric(this.url, 'lista');
   }
+  getUsuario(rut:any){
+    return this.genericServices.getGeneric(this.url, rut);
+  }
   deleteUsuario(id:string){
     return this.genericServices.deleteGeneric(this.url,id,"");
   }

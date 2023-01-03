@@ -1,1 +1,79 @@
-<p>vista works!</p>
+<div class="m-3 mt-3">
+
+  <div class="card">
+    <p-table [value]="doc" >
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Documento</th>
+          <th>Acciones</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-doc>
+        <tr>
+          <td>{{doc.label}}</td>
+          <td>
+            <div class="row">
+              <div class="col">
+                <button [class]="'btn btn-'+doc.style" (click)="add(doc.id)"><i [class]="doc.icon"></i> {{ doc.buttonlabel}} </button>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+
+
+<p-dialog class="m-3 mt-3" [(visible)]="display" header="Ingrese rango de fechas" [style]="{width: '40vw', height : '25vw'}">
+  <form class="mb-4" [formGroup]="formulario" >
+    <br>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <h2>Estacion</h2>
+          <div class="col-sm-6">
+            <mat-form-field appearance="outline" >
+              <mat-label>Seleciones una estación</mat-label>
+              <mat-select formControlName="id_estacion">
+                <mat-option *ngFor="let food of estaciones" [value]="food.id_estacion" >
+                  {{food.nombre}}
+                </mat-option>
+              </mat-select>
+
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="col">
+          <h2>Inicio</h2>
+          <div class="col-sm-6">
+            <mat-form-field appearance="outline" >
+              <mat-label>Ingrese nombre de la estación</mat-label>
+              <input matInput type="date" placeholder="Fecha de inicio" formControlName="inicio" required>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="col">
+          <div class="row">
+            <h2>Termino</h2>
+            <div class="col-sm-6">
+              <mat-form-field appearance="outline" >
+                <mat-label>Ingrese ubicación</mat-label>
+                <input matInput type="date" placeholder="Fecha de termino" formControlName="termino" required>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </form>
+  <ng-template pTemplate="footer">
+    <button class="btn btn-danger"  (click)="display =!display"> Cancelar</button>
+    <button class="btn btn-primary" (click)="generar()"><i class="pi pi-save"></i> Agregar</button>
+  </ng-template>
+
+</p-dialog>
+

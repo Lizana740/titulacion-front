@@ -8,14 +8,17 @@
           <div class="row">
             <div class="col-sm-2" *ngFor="let sensor of estacion.sensores;let i = index;" style=" margin-top: 10px;">
               <div class="card" (click)="change(sensor.id_sensor)">
-                <div class="card-header"> {{ sensor.tipo}}</div>
+                <div class="card-header text-center"> <b>{{ sensor.tipo}}</b></div>
                 <div class="card-body">
                   <mwl-gauge [max]="100" [dialStartAngle]="-90" [dialEndAngle]="-90.001" [value]="this.datas[i].data[this.datas[i].data.length - 1]" [animated]="true"
                     [animationDuration]="0.5">
                   </mwl-gauge>
+                  <div class="row text-center">
+                     <p> {{sensor.escala }}</p>
+                  </div>
                 </div>
-                <div class="card-footer">
-                  {{ sensor.modelo}}
+                <div class="card-footer text-center">
+                  <p> Model: {{ sensor.modelo}}</p>
                 </div>
               </div>
             </div>
@@ -23,19 +26,18 @@
           </div>
           <hr>
         </div>
-        <div class="container">
-          <div class="row">
-            <canvas baseChart class="chart" [data]="lineChartData" [options]="lineChartOptions"
-              [type]="lineChartType" height="100px"></canvas>
-          </div>
 
-        </div>
 
       </mat-tab>
 
     </mat-tab-group>
+    <div class="container">
+      <div class="row">
+        <canvas baseChart class="chart" [data]="lineChartData" [options]="lineChartOptions"
+          [type]="lineChartType" height="90px"></canvas>
+      </div>
+
+    </div>
   </div>
-
-
 
 </div>

@@ -2,8 +2,8 @@
   <div class="card">
 
 
-    <p-table #dt2 [value]="usuarios" dataKey="id" [tableStyle]="{'min-height': '5rem'}"
-        [rows]="2" [showCurrentPageReport]="true" [rowsPerPageOptions]="[5,10,25]" [loading]="loading"
+    <p-table #dt2 [value]="usuarios" dataKey="id" [tableStyle]="{'min-height': '5rem'}" [scrollable]="true" scrollHeight="25%" [rows]="5"
+        [showCurrentPageReport]="true" [rowsPerPageOptions]="[5,10,25]" [loading]="loading"
         [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
         [globalFilterFields]="['nombre','rut','correo','status']">
         <ng-template pTemplate="caption">
@@ -78,7 +78,7 @@
                 <td>
                   <div class="row">
                     <div class="col">
-                      <button class="btn btn-primary bt"><i class="pi pi-pencil" ></i></button>
+                      <button class="btn btn-primary bt" (click)="editar(usuario.rut)"><i class="pi pi-pencil" ></i></button>
                     </div>
                     <div class="col">
                       <button class="btn  btn-danger bt" (click)="delete(usuario.rut)"><i class="pi pi-trash"></i></button>
