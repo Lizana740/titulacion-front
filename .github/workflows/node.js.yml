@@ -10,8 +10,8 @@ on:
     branches: [ "main" ]
 env: 
   PORT : 22
-  HOST: 44.201.124.245
-  USER: ubuntu
+  HOST: pacheco.chillan.ubiobio.cl
+  USER: franciscolizana1801
   
 jobs:
   build:
@@ -25,9 +25,10 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm install
+   
     - run: npm install -g @angular/cli
     - run: ng config -g cli.warnings.versionMismatch false
+    - run: npm install --force
     - run: ng build 
     
     - name: copy file via ssh key
