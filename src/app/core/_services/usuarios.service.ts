@@ -22,4 +22,7 @@ export class UsuariosService {
   obtenerUsuariosRol(id_rol:number){
     return this.genericServices.getGeneric(this.url+"trabajador/",id_rol )
   }
+  updateUsuario(body:any){
+    return this.genericServices.postGeneric(this.url+"actualizar/", "",body);
+  }
 }

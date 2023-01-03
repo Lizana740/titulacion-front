@@ -1,6 +1,5 @@
 <nav class="navbar navbar-dark bg-dark">
   <a class="navbar-brand" href="#">
-    <div>       </div>
      Sistema de Monitoreo y Control de factores Abioticos
   </a>
 </nav>
@@ -12,12 +11,16 @@
               <div class="card-body">
                   <form [formGroup]="formularioLogin" (ngSubmit)="submitLogin()">
                       <div class="form-floating mb-3">
-                          <input class="form-control" id="inputEmail" type="email" formControlName="correo" placeholder="name@example.com" />
-                          <label for="inputEmail">Correo</label>
+                        <mat-form-field appearance="outline" style="width: 100% ;">
+                          <mat-label>Correo</mat-label>
+                          <input matInput type="email" placeholder="Email" formControlName="correo" required>
+                        </mat-form-field>
                       </div>
                       <div class="form-floating mb-3">
-                          <input class="form-control" id="inputPassword" type="password"  formControlName="clave" placeholder="Contraseña" />
-                          <label for="inputPassword">Contraseña</label>
+                          <mat-form-field appearance="outline" style="width: 100% ;">
+                            <mat-label>Contraseña</mat-label>
+                            <input matInput type="password"  formControlName="clave" required>
+                          </mat-form-field>
                       </div>
                       <div class="form-check mb-3">
                           <input class="form-check-input" id="inputRememberPassword" type="checkbox" value="" />
@@ -30,11 +33,11 @@
                   </form>
               </div>
               <div class="card-footer text-center py-3">
-                  <div class="small"><a href="register.html">Need an account? Sign up!</a></div>
+
               </div>
           </div>
       </div>
   </div>
 </div>
-
-<app-footer></app-footer>
+<p-toast position="bottom-center"></p-toast>
+<app-footer ></app-footer>

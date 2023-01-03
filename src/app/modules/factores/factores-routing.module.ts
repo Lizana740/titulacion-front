@@ -7,7 +7,7 @@ const routes: Routes = [
     path: 'visualizar',
     component: VisualizarComponent,
     data: {title: 'dede'}
-  }
+  },
 ];
 
 @NgModule({

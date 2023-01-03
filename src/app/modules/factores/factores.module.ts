@@ -4,6 +4,10 @@ import { VisualizarComponent } from './components/visualizar/visualizar.componen
 import { FactoresRoutingModule } from './factores-routing.module';
 import { SharedModule } from '../shared/shared.module';
 
+/*CHART GAUGE*/
+import { GaugeModule } from 'angular-gauge';
+import { NgChartsModule , NgChartsConfiguration } from 'ng2-charts';
+/* END */
 
 @NgModule({
   declarations: [
@@ -13,7 +17,11 @@ import { SharedModule } from '../shared/shared.module';
     CommonModule,
     FactoresRoutingModule,
     SharedModule,
-
+    GaugeModule.forRoot(),
+    NgChartsModule,
+  ],
+  providers: [
+    { provide: NgChartsConfiguration, useValue: { generateColors: false }}
   ]
 })
 export class FactoresModule {

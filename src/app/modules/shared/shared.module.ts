@@ -20,6 +20,7 @@ import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { SidebarModule } from 'primeng/sidebar';
 import {ButtonModule} from 'primeng/button';
 import { AutoCompleteModule } from 'primeng/autocomplete';
+import {TooltipModule} from 'primeng/tooltip';
 /* END */
 
 /* MATERIAL */
@@ -44,6 +45,8 @@ import { NotfoundpageComponent } from './components/notfoundpage/notfoundpage.co
 import { FooterComponent } from './components/footer/footer.component';
 
 
+
+
 @NgModule({
   declarations: [
     HomeComponent,
@@ -54,6 +57,7 @@ import { FooterComponent } from './components/footer/footer.component';
   ],
   imports: [
     MatTabsModule,
+    MatInputModule,
     ButtonModule,
     PanelModule,
     MatListModule,
@@ -71,6 +75,7 @@ import { FooterComponent } from './components/footer/footer.component';
     MenuModule,
     MatButtonModule,
     AutoCompleteModule,
+    TooltipModule,
   ],
   providers: [MessageService],
   bootstrap: [],
@@ -103,7 +108,9 @@ import { FooterComponent } from './components/footer/footer.component';
     BreadcrumbModule,
     MatButtonModule,
     MatIconModule,
-    AutoCompleteModule
+    AutoCompleteModule,
+    TooltipModule,
+
   ],
 })
 export class SharedModule {

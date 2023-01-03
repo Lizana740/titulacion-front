@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MessageService, PrimeNGConfig } from 'primeng/api';
 import { MedicionService } from 'src/app/core/_services/medicion.service';
 import * as XLSX from 'xlsx';
 
@@ -11,9 +12,12 @@ import * as XLSX from 'xlsx';
 export class ListaComponent implements OnInit {
   loading = false;
   mediciones!:any[];
-  constructor(private medicionService:MedicionService) { }
+  constructor(private medicionService:MedicionService,private messageService: MessageService,private primengConfig: PrimeNGConfig) {
+
+   }
 
   ngOnInit(): void {
+    this.primengConfig.ripple = true;
     this.getMedicionServices();
     setInterval(()=> {
       this.getMedicionServices();

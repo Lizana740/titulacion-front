@@ -16,7 +16,7 @@
           </div>
           <div class="col text" ALIGN="right">
             <div class="flex">
-              <button class="btn btn-success ml-auto" (click)="this.display =true">Agregar</button>
+              <button class="btn btn-success ml-auto" pTooltip="Añadir estación" tooltipPosition="top" (click)="this.display =true"><i class="pi pi-plus-circle"></i> Agregar</button>
             </div>
           </div>
         </div>
@@ -50,15 +50,15 @@
           <td>
             <div class="row">
               <div class="col">
-                <button (click)="delete(estacion.id_estacion)" class="btn btn-danger"> <i
+                <button (click)="delete(estacion.id_estacion)"  pTooltip="Eliminar" tooltipPosition="top" class="btn btn-danger"> <i
                     class="pi pi-trash"></i></button>
               </div>
               <div class="col">
                 <button  (click)="asignar(estacion.id_estacion)"
-                  class="btn btn-success" ><i class="pi pi-user-plus text-white"></i></button>
+                  class="btn btn-primary" ><i class="pi pi-user-plus text-white" pTooltip="Asignar trabajador" tooltipPosition="top" ></i></button>
               </div>
               <div class="col">
-                <button  class="btn btn-warning"> <i class="pi pi-pencil text-white"></i></button>
+                <button  class="btn btn-warning"> <i class="pi pi-pencil text-white" pTooltip="Editar" tooltipPosition="top"></i></button>
               </div>
 
 

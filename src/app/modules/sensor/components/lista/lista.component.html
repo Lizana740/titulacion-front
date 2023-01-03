@@ -13,12 +13,20 @@
   <ng-template pTemplate="body" let-lista let-expanded="expanded">
       <tr>
           <td>
-              <button type="button" pButton pRipple [pRowToggler]="lista" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+              <button [pRowToggler]="lista" class="btn" pTooltip="Expandir" tooltipPosition="top"  >
+                <i [class]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'">
+
+                </i>
+              </button>
           </td>
           <td>{{lista.nombre}}</td>
           <td>{{lista.ubicacion }}</td>
           <td>{{lista.sensores.length }}</td>
-          <td class="row"><button (click)="add(lista.id_estacion)" pButton type="button" class="p-button-raised p-button-rounded" icon="pi pi-plus-circle"></button></td>
+          <td >
+            <div class="row">
+              <div class="col"><button (click)="add(lista.id_estacion)" class="btn btn-success" > <i class="pi pi-plus-circle"></i></button></div>
+            </div>
+          </td>
       </tr>
   </ng-template>
   <ng-template pTemplate="rowexpansion" let-ordes>

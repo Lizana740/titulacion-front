@@ -1,12 +1,83 @@
 
-<div class="container">
+<div class="m-3 mt-3">
  <div class="card">
   <div class="card-header">
-    <h2>Titulo</h2>
+    <h3>Información de Usuario</h3>
   </div>
   <div class="card-body">
-    <h1>Hello World</h1>
+    <form class="mb-4" [formGroup]="formularioUsuario" (ngSubmit)="actualizar()">
+      <br>
+      <div class="m-3 mt-3">
+        <div class="row">
+          <h3><b> Nombre</b></h3>
+          <div class="col">
+            <div class="col">
+              <mat-form-field appearance="outline" style="width: 100% ;">
+                <mat-label>Ingrese nombre</mat-label>
+                <input matInput placeholder="Nombre" formControlName="nombre" >
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="col">
+              <mat-form-field appearance="outline" style="width: 100% ;">
+                <mat-label>Ingrese apellido paterno</mat-label>
+                <input matInput placeholder="Apellido" formControlName="apellido_paterno" >
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="col">
+              <mat-form-field appearance="outline" style="width: 100% ;">
+                <mat-label>Ingrese apellido materno</mat-label>
+                <input matInput placeholder="Apellido" formControlName="apellido_materno" >
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <h3>Rut</h3>
+            <div class="col">
+              <mat-form-field appearance="outline" style="width: 100% ;">
+                <mat-label>Ingrese su rut</mat-label>
+                <input matInput placeholder="Rut" formControlName="rut" >
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <h3>Correo</h3>
+            <div class="col">
+              <mat-form-field appearance="outline" style="width: 100% ;">
+                <mat-label>Ingrese correo</mat-label>
+                <input matInput placeholder="Correo" formControlName="correo" >
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <h3>Contraseña</h3>
+            <div class="col-sm-6">
+              <mat-form-field appearance="outline" style="width: 100% ;">
+                <mat-label>Ingrese contraseña</mat-label>
+                <input matInput type="password" placeholder="Contraseña" formControlName="clave" >
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class="row"  >
+            <div class="col-sm-2" >
+              <button class="btn btn-success" type="submit" ><i class="pi pi-save"></i>Guardar</button>
+             </div>
+
+        </div>
+      </div>
+
+
+    </form>
   </div>
 
  </div>
 </div>
+<p-toast></p-toast>
