@@ -11,14 +11,14 @@ export class ReporteService {
   downloadPDF(body: any): any {
     console.log("DownloadDF")
     return this.http.post(
-      'http://localhost:3000/api/reporte/general/pdf/',
+      'http://pacheco.chillan.ubiobio.cl:8081/api/reporte/general/pdf/',
       body,
       { responseType: 'blob' }
     );
   }
   dowloadExcel(body: any): any {
     return this.http.post(
-      'http://localhost:3000/api/reporte/estacion/excel/',
+      'http://pacheco.chillan.ubiobio.cl:8081/api/reporte/estacion/excel/',
       body,
       { responseType: 'blob' }
     );
