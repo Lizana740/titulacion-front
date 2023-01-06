@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AsignacionService } from 'src/app/core/_services/asignacion.service';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import { NotFoundError, Observable } from 'rxjs';
+import {  Observable } from 'rxjs';
 import { TrabajadoresService } from 'src/app/core/_services/trabajadores.service';
 import { map, startWith } from 'rxjs/operators';
 import { MessageService } from 'primeng/api';
@@ -107,9 +107,7 @@ export class TrabajadoresComponent implements OnInit {
 
 
     }
-/*     this.asignacionesServices.asignarTrabajadorEstacion().subscribe((res:any)=>{
 
-    }) */
   }
   getTrabajadores() {
     this.trabajadorServices.obtenerTrabajadores().subscribe((res: any) => {

@@ -26,7 +26,6 @@ export class VisualizarComponent implements OnInit{
   ) {
     this.getEstaciones();
     setInterval(()=>{
-      console.log("DATA::", this.datas)
     },1000)
     Chart.register(Annotation);
   }
@@ -73,7 +72,6 @@ export class VisualizarComponent implements OnInit{
     this.estacionServices.getEstacion().subscribe(
       (res: any) => {
         this.estaciones = res.data;
-        console.log(this.estaciones.length);
         this.setTimer();
       },
       (err: any) => {
@@ -89,7 +87,6 @@ export class VisualizarComponent implements OnInit{
       (item) => item.id == id
     )[0];
     this.label = ' Sensor:: ' + id;
-    console.log("GRAP::",this.data);
 
     this.lineChartData  = {
       datasets: [

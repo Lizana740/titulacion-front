@@ -45,11 +45,11 @@
                       </ng-template>
                       <ng-template pTemplate="body" let-order>
                           <tr>
-                              <td style="width: 10%" >{{order.modelo}}</td>
-                              <td style="width: 20%">{{order.tipo}}</td>
-                              <td style="width: 20%">{{order.descripcion}}</td>
-                              <td style="width: 10%">{{order.escala}}</td>
-                              <td class="row" style="width: 60%">
+                              <td  >{{order.modelo}}</td>
+                              <td >{{order.tipo}}</td>
+                              <td >{{order.descripcion}}</td>
+                              <td >{{order.escala}}</td>
+                              <td class="row" >
                                 <div class="col">
                                   <button  class="btn btn-danger" (click)="eliminarSensor(order.id_sensor)" pTooltip="Eliminar" tooltipPosition="top" > <i class="pi pi-trash"></i></button>
                                 </div>
@@ -74,54 +74,55 @@
 </div>
 </div>
 
-<p-dialog class="m-3 mt-3" [(visible)]="display" header="Agregar Estación" [style]="{width: '60vw', height : '40vw'}">
+<p-dialog class="m-3 mt-3" [(visible)]="display" header="Agregar Sensor" [breakpoints]="{'960px': '75vw'}" [style]="{width: '50vw'}"
+[draggable]="false" [resizable]="false" [modal]="true">
   <form class="mb-4" [formGroup]="formulario">
     <br>
     <div class="container">
       <div class="row">
-        <h2>Tipo</h2>
-        <div class="col-sm-10">
-          <mat-form-field appearance="outline" style="width: 100% ;">
-            <mat-label>Ingrese tipo de sensor</mat-label>
-            <input matInput placeholder="Tipo" formControlName="tipo" required>
-          </mat-form-field>
+        <div class="col">
+          <h2>Tipo</h2>
+          <div class="col-sm-10">
+            <mat-form-field appearance="outline" style="width: 100% ;">
+              <mat-label>Ingrese tipo de sensor</mat-label>
+              <input matInput placeholder="Tipo" formControlName="tipo" required>
+            </mat-form-field>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <h2>Modelo</h2>
-        <div class="col-sm-10">
-          <mat-form-field appearance="outline" style="width: 100% ;">
-            <mat-label>Ingrese el modelo</mat-label>
-            <input matInput placeholder="mdelo" formControlName="modelo" required>
-          </mat-form-field>
+        <div class="col">
+          <h2>Modelo</h2>
+          <div class="col-sm-10">
+            <mat-form-field appearance="outline" style="width: 100% ;">
+              <mat-label>Ingrese el modelo</mat-label>
+              <input matInput placeholder="mdelo" formControlName="modelo" required>
+            </mat-form-field>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <h2>Escala</h2>
-        <div class="col-sm-10">
-          <mat-form-field appearance="outline" style="width: 100% ;">
-            <mat-label>Ingrese la escala de medición</mat-label>
-            <input matInput placeholder="ubicacion" formControlName="escala" required>
-          </mat-form-field>
+        <div class="col">
+          <h2>Escala</h2>
+          <div class="col-sm-10">
+            <mat-form-field appearance="outline" style="width: 100% ;">
+              <mat-label>Ingrese la escala de medición</mat-label>
+              <input matInput placeholder="ubicacion" formControlName="escala" required>
+            </mat-form-field>
+          </div>
         </div>
       </div>
 
       <div class="row">
         <h2>Descripción</h2>
-        <div class="col-sm-10">
+        <div class="col-sm-12">
           <mat-form-field appearance="outline" style="width: 100% ;">
             <mat-label>Ingrese una descripción</mat-label>
-            <input matInput placeholder="ubicacion" formControlName="descripcion" required>
+            <textarea matInput placeholder="ubicacion" formControlName="descripcion" required></textarea>
           </mat-form-field>
         </div>
       </div>
     </div>
-
-
   </form>
   <ng-template pTemplate="footer">
-    <button class="btn" (click)="display =!display"  > Cancelar</button>
-    <button  class="btn" (click)="agregarSensor()" > Agregar</button>
+    <button class="btn btn-danger" (click)="display =!display" ><i class="pi pi-times"></i> Cancelar</button>
+    <button  class="btn btn-primary" (click)="agregarSensor()" ><i class="pi pi-check"></i> Agregar</button>
     </ng-template>
 </p-dialog>
 

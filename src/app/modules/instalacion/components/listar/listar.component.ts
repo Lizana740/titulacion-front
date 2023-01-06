@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { EstacionService } from 'src/app/core/_services/estacion.service';
 import { FormBuilder, Validators,FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2'
+
 @Component({
   selector: 'app-listar',
   templateUrl: './listar.component.html',
@@ -35,10 +37,31 @@ export class ListarComponent implements OnInit {
   }
 
   delete(id:string){
-    this.estacionServices.deleteEstacion(id).subscribe(res => {
-      console.log("Se a eliminado una estacion");
-      this.getEstaciones()
+    Swal.fire({
+      title: '¿Estas seguro de eliminar?',
+      text: "Los cambios seran permanentes",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'Cancelar',
+      confirmButtonText: 'Si, eliminar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.estacionServices.deleteEstacion(id).subscribe(res => {
+          console.log("Se a eliminado una estacion");
+          this.getEstaciones()
+
+        },(error:any)=>{
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'No se ha podido eliminar la estación!'
+          })
+        })
+      }
     })
+
   }
   add(){
     this.estacionServices.agregarEstacion(this.formulario.value).subscribe(item => {

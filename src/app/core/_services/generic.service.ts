@@ -6,8 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class GenericService {
-  //private bdd:string = 'http://pacheco.chillan.ubiobio.cl:8081/api';
-  private bdd:string = 'http://localhost:3000/api';
+  private bdd:string = 'http://pacheco.chillan.ubiobio.cl:8081/api';
+  //private bdd:string = 'http://localhost:3000/api';
   constructor(private httpClient:HttpClient) { }
 
 

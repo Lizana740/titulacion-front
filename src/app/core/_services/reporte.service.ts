@@ -9,7 +9,6 @@ export class ReporteService {
   constructor(private http: HttpClient) {}
 
   downloadPDF(body: any): any {
-    console.log("DownloadDF")
     return this.http.post(
       'http://pacheco.chillan.ubiobio.cl:8081/api/reporte/general/pdf/',
       body,

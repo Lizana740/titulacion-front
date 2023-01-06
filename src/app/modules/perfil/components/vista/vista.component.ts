@@ -8,7 +8,8 @@ import {
 } from '@angular/forms';
 import { UsuariosService } from 'src/app/core/_services/usuarios.service';
 import { MessageService } from 'primeng/api';
-
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-vista',
   templateUrl: './vista.component.html',
@@ -20,7 +21,7 @@ export class VistaComponent implements OnInit {
     private authServices: AutentificacionService,
     private _formBuilder: FormBuilder,
     private usuarioServices: UsuariosService,
-    private messageService: MessageService
+    private router :Router
   ) {}
 
   ngOnInit(): void {
@@ -36,9 +37,34 @@ export class VistaComponent implements OnInit {
     });
   }
   actualizar(){
-    this.usuarioServices.updateUsuario(this.formularioUsuario.value).subscribe((res)=>{
+    Swal.fire({
+      title: '¿Estas seguro de guardar los cambios?',
+      text: "Podras volver a editarlos en esta misma sección",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: "Cancelar",
+      confirmButtonText: 'Actualizar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.usuarioServices.updateUsuario(this.formularioUsuario.value).subscribe((res)=>{
+          Swal.fire(
+            'Éxito',
+            'Tus datos han sido actualizados.',
+            'success'
+          )
+        }, (err:any)=>{
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'La actualización de tus datos no se a podido concretar!'
+          })
 
-      this.messageService.add({severity:'success', summary: 'Datos Actualizados', detail: 'La información del usuario se a actualizado'});
+
+        })
+      }
     })
+
   }
 }

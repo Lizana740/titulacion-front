@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SensorService } from 'src/app/core/_services/sensor.service';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { ActuadorService } from 'src/app/core/_services/actuador.service';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import Swal from 'sweetalert2';
-
 @Component({
   selector: 'app-editar',
   templateUrl: './editar.component.html',
@@ -11,10 +10,9 @@ import Swal from 'sweetalert2';
 })
 export class EditarComponent implements OnInit {
   formulario!: FormGroup;
-  id: any;
-
+  id: number;
   constructor(
-    private sensorServices: SensorService,
+    private actuadorServices: ActuadorService,
     private _formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private router: Router
@@ -22,30 +20,25 @@ export class EditarComponent implements OnInit {
     this.formulario = this._formBuilder.group({
       modelo: ['', Validators.required],
       tipo: ['', Validators.required],
-      escala: ['', Validators.required],
       descripcion: ['', Validators.required],
     });
   }
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((parametros: ParamMap) => {
-      this.id = parametros.get('id_sensor')!;
-      this.sensorServices.obtenerSensorPorId(this.id).subscribe((res) => {
+      this.id = parseInt(parametros.get('id_actuador')!);
+      this.actuadorServices.obtenerActuadorPorId(this.id).subscribe((res) => {
         var sensor = res.data;
         this.formulario = this._formBuilder.group({
           modelo: [sensor.modelo, Validators.required],
           tipo: [sensor.tipo, Validators.required],
-          escala: [sensor.escala, Validators.required],
           descripcion: [sensor.descripcion, Validators.required],
         });
       });
     });
   }
-  cancelar() {
-    this.router.navigate(['/app/sensor/listar']);
-  }
 
-  add() {
+  add(){
     Swal.fire({
       title: '¿Estas seguro de guardar los cambios?',
       text: "Podras volver a editarlos en esta misma sección",
@@ -57,13 +50,30 @@ export class EditarComponent implements OnInit {
       confirmButtonText: 'Actualizar'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.sensorServices
-        .actualizarSensor(this.id, this.formulario.value)
-        .subscribe((res) => {
-          this.router.navigate(['/app/sensor/listar']);
-        });
+        this.actuadorServices.actualizarActuador(this.id, this.formulario.value).subscribe((res:any)=>{
+          this.router.navigate(['app/actuador/listar'])
+          Swal.fire(
+            'Éxito',
+            'Tus datos han sido actualizados.',
+            'success'
+          )
+
+        }, (err:any)=>{
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'La actualización de tus datos no se a podido concretar!'
+          })
+
+
+        })
       }
+
+
     })
 
+  }
+  volver(){
+    this.router.navigate(['/app/sensor/listar']);
   }
 }
