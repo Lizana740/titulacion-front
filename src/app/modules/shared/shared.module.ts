@@ -34,7 +34,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import {MatButtonModule} from '@angular/material/button';
-
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 /* END */
 
 /*COMPONENTS*/
@@ -57,6 +57,7 @@ import { FooterComponent } from './components/footer/footer.component';
   ],
   imports: [
     MatTabsModule,
+    MatAutocompleteModule,
     MatInputModule,
     ButtonModule,
     PanelModule,
@@ -80,6 +81,7 @@ import { FooterComponent } from './components/footer/footer.component';
   providers: [MessageService],
   bootstrap: [],
   exports: [
+    MatAutocompleteModule,
     MatTabsModule,
     ButtonModule,
     SidebarModule,

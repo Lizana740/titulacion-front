@@ -5,11 +5,10 @@ import { GenericService } from './generic.service';
   providedIn: 'root',
 })
 export class TrabajadoresService {
-  private url: string = '//';
+  private url: string = '/trabajador/';
   constructor(private genericServices: GenericService) {}
 
-  obtenerTrabajadoresAsignados(id_estaciom:number){
-
-
+  obtenerTrabajadores(){
+    return this.genericServices.getGeneric(this.url, "");
   }
 }

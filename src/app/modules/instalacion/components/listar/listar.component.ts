@@ -47,6 +47,6 @@ export class ListarComponent implements OnInit {
     })
   }
   asignar(id_estacion:number){
-      this.router.navigate(['app/estacion/trabajadores'])
+      this.router.navigate([`app/estacion/trabajadores/${id_estacion}`])
   }
 }

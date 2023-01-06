@@ -2,93 +2,123 @@
   <div class="card ">
     <div class="row">
       <div class="col-2 m-3 mt-3">
-        <button class="btn btn-success" >Asignar Trabajador </button>
-      </div>
 
-      <div class="col-2 m-3 mt-3">
-        <button class="btn btn-primary" (click)="modalMantenedor()">Asignar Mantenedor </button>
+        <button *ngIf="loading" class="btn btn-success" (click)="asignar()" ><i class="pi pi-user-plus"></i> Asignar </button>
       </div>
     </div>
   </div>
-  </div>
+</div>
 <div class="m-3 mt-3">
   <div class="card">
-<mat-tab-group>
-  <mat-tab label="Planta">
-    <p-table [value]="trabajadores.usuarios" >
-      <ng-template pTemplate="header">
-          <tr>
-            <th>Rut</th>
-            <th>Nombre</th>
-            <th>Correo</th>
-            <th>Acción</th>
-          </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-product>
-          <tr>
-            <td style="width: 10%">{{product.rut}}</td>
-            <td>{{product.nombre}} {{product.apellido_paterno}}  {{product.apellido_materno}}</td>
-            <td>{{product.correo}}</td>
-            <td>
+    <mat-tab-group>
+      <mat-tab label="Usuario de Planta">
+        <p-table [value]="usuarios_planta">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Rut</th>
+              <th>Nombre</th>
+              <th>Correo</th>
+              <th>Acción</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-trabajador>
+            <tr>
+              <td style="width: 10%">{{trabajador.usuario.rut}}</td>
+              <td>{{trabajador.usuario.nombre}} {{trabajador.usuario.apellido_paterno}}
+                {{trabajador.usuario.apellido_materno}}</td>
+              <td>{{trabajador.usuario.correo}}</td>
+              <td>
                 <div class="row">
                   <div class="col">
-                    <button class="btn btn-danger "> <i class="pi pi-trash"></i></button>
+                    <button class="btn btn-danger" (click)="eliminarPlanta(trabajador.id_trabajador)"> <i class="pi pi-trash"></i></button>
                   </div>
                 </div>
               </td>
-          </tr>
-      </ng-template>
-      <ng-template pTemplate="emptymessage">
-        <tr>
-            <td colspan="3">No hay trabajadores de planta asignados.</td>
-        </tr>
-    </ng-template>
-  </p-table>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <td colspan="3">No hay trabajadores de planta asignados.</td>
+            </tr>
+          </ng-template>
+        </p-table>
 
 
-  </mat-tab>
-  <mat-tab label="Mantenedores">
-    <p-table [value]="mantenedores.usuarios" >
-      <ng-template pTemplate="header">
-          <tr>
-              <th>Nombre</th>
+      </mat-tab>
+      <mat-tab label="Mantenedores">
+        <p-table [value]="mantenedores">
+          <ng-template pTemplate="header">
+            <tr>
               <th>Rut</th>
+              <th>Nombre</th>
               <th>Correo</th>
-          </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-product>
-          <tr>
-              <td>{{product.nombre}}</td>
-              <td>{{product.rut}}</td>
-              <td>{{product.correo}}</td>
-          </tr>
-      </ng-template>
-      <ng-template pTemplate="emptymessage">
-        <tr>
-            <td colspan="3">No hay mantendores asignados.</td>
-        </tr>
-    </ng-template>
-  </p-table>
-  </mat-tab>
-</mat-tab-group>
-</div>
+              <th>Acción</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-mantenedor>
+            <tr>
+              <td>{{mantenedor.usuario.rut}}</td>
+              <td>{{mantenedor.usuario.nombre}}</td>
+              <td>{{mantenedor.usuario.correo}}</td>
+              <td>
+                <div class="row">
+                  <div class="col">
+                    <button class="btn btn-danger " (click)="eliminarMantenedor(mantenedor.id_trabajador)"> <i class="pi pi-trash"></i></button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <td colspan="3">No hay mantendores asignados.</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
 </div>
 
 <!--MODAL DE MANTENEDORES-->
+<p-dialog header="Asignar trabajador" [(visible)]="display" [breakpoints]="{'960px': '75vw'}" [style]="{width: '50vw'}"
+  [draggable]="false" [resizable]="false" [modal]="true">
+  <ng-template pTemplate="body">
+    <form [formGroup]="formulario">
+      <div class="row">
+        <mat-form-field class="example-full-width" appearance="outline" >
+          <mat-label>Nombre </mat-label>
+          <input matInput
+                 aria-label="Nombre"
+                 [matAutocomplete]="auto"
+                 [formControl]="estado"
 
-<p-dialog class="m-3 mt-3" [(visible)]="modalMantenedores" header="Agregar Mantenedor" [style]="{width: '60vw', height : '40vw'}">
-
-  <p-autoComplete [(ngModel)]="selectedCountryAdvanced" [suggestions]="filteredCountries"
-  (completeMethod)="filterCountry($event)" field="name" [dropdown]="true">
-  <ng-template let-country pTemplate="item">
-    <div class="country-item">
-      <div>{{country.name}}</div>
+                 >
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let trabajador of filteredStates | async" (onSelectionChange)="click(trabajador.trabajador.id_trabajador)"
+            [value]="trabajador.nombre+' '+trabajador.apellido_paterno+','+trabajador.rut">
+              <span>{{trabajador.nombre}} {{trabajador.apellido_paterno}} {{trabajador.apellido_materno}}
+              </span>
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+    </form>
+    <div class="row">
+      <mat-form-field appearance="outline"  >
+        <mat-label>Rol</mat-label>
+        <select matNativeControl  [(ngModel)]="this.body.id_rol" required>
+          <option value="-1" >Seleccione un rol ...</option>
+          <option *ngFor="let rol of this.roles" [value]="rol.id_rol"> {{rol.valor}}</option>
+        </select>
+      </mat-form-field>
     </div>
-  </ng-template>
-</p-autoComplete>
 
+
+  </ng-template>
   <ng-template pTemplate="footer">
-    <button class="btn" (click)="modalMantenedores =!modalMantenedores"  > Cancelar</button>
-    <button  class="btn" (click)="addMantenedor()" > Agregar</button>
-    </ng-template>
+    <button (click)="cancel()"  class="btn btn-danger"><i class="pi pi-trash"></i> Cancelar</button>
+    <button class="btn btn-primary" (click)="enviar()" > <i class="pi pi-save"></i> Asignar</button>
+  </ng-template>
 </p-dialog>
+<p-toast   position="top-center" ></p-toast>
