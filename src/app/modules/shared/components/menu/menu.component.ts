@@ -4,6 +4,7 @@ import { MenuItem } from 'primeng/api';
 import { administrador, mantenedor, usuario_planta} from 'src/app/core/_files/menu'
 import { ActivatedRoute, NavigationEnd, NavigationError, NavigationStart, Router,Event } from '@angular/router';
 import { AutentificacionService } from 'src/app/core/_services/autentificacion.service';
+import { ADMINISTRADOR, MANTENEDOR, USUARIO_PLANTA } from 'src/app/core/_files/cons';
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -68,12 +69,15 @@ export class MenuComponent implements OnInit {
     switch (this.rol) {
       case "ADMINISTRADOR":
         this.items = administrador
+        localStorage.setItem('id_rol', ""+ADMINISTRADOR);
         break;
         case "MANTENEDOR":
           this.items = mantenedor
+          localStorage.setItem('id_rol', ""+MANTENEDOR);
           break;
         case "USUARIO DE PLANTA":
           this.items= usuario_planta
+          localStorage.setItem('id_rol', ""+USUARIO_PLANTA);
         break;
 
     }

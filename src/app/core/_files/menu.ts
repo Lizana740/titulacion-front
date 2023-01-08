@@ -35,7 +35,7 @@ export const administrador = [
       ]
     },
     {
-        label: 'Mantenedores',
+        label: 'Dispositivos',
         items: [
             { label: 'Sensores', icon: 'pi pi-fw pi-users', route: 'sensor/listar' },
             { label: 'Actuadores', icon: 'pi pi-fw pi-users', route: 'actuador/listar' },
@@ -87,11 +87,19 @@ export const usuario_planta = [
 
   },
   {
-    label: 'Mis Estaciones',
+    label: 'Factores',
+    icon: 'pi pi-fw pi-users',
     items: [
-        { label: 'Ver Estaciones', icon: 'pi pi-fw pi-users', route: 'factor/visualizar' },
+        { label: 'Visualizar Factores', icon: 'pi pi-fw pi-users', route: 'factor/visualizar' },
     ]
   },
+  {
+    label: 'Estaciones',
+    icon: 'pi pi-fw pi-users',
+    items: [
+        { label: 'Mis estaciones aisgnadas', icon: 'pi pi-fw pi-users', route: 'estacion/asignada' },
+    ]
+  }
 
 
 ];

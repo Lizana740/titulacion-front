@@ -33,6 +33,13 @@ export class ListarComponent implements OnInit {
     this.estacionServices.getEstacion().subscribe(res => {
       this.estaciones = res.data;
       this.loading = false;
+    },(error:any)=>{
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'No se pudieron obtener los datos de las estaciones!'
+      })
+      this.loading = false;
     })
   }
 
@@ -65,6 +72,13 @@ export class ListarComponent implements OnInit {
   }
   add(){
     this.estacionServices.agregarEstacion(this.formulario.value).subscribe(item => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Estación añadida con éxito!!',
+        showConfirmButton: false,
+        timer: 1500
+      })
+
       this.getEstaciones();
       this.display=false;
     })

@@ -92,7 +92,6 @@
                  aria-label="Nombre"
                  [matAutocomplete]="auto"
                  [formControl]="estado"
-
                  >
           <mat-autocomplete #auto="matAutocomplete">
             <mat-option *ngFor="let trabajador of filteredStates | async" (onSelectionChange)="click(trabajador.trabajador.id_trabajador)"

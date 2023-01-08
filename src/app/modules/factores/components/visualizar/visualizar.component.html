@@ -1,11 +1,16 @@
 <div class="m-3 mt-3">
   <div class="card">
-    <mat-tab-group>
+    <div class="card-header " style="color: grey ">
+      <h2> Factores Abióticos</h2>
+    </div>
+    <div *ngIf="estaciones && estaciones.length == 0" style="margin: 20px;">
+      <h3>El usuario no tiene estaciones actualmente asignadas </h3>
+    </div>
+    <mat-tab-group *ngIf="estaciones != null" (selectedTabChange)="changeTab()">
       <mat-tab *ngFor="let estacion of estaciones" [label]="estacion.nombre">
         <br>
-        <div class="container">
-
-          <div class="row">
+        <div class="container" *ngIf="estacion.sensores!= null">
+          <div class="row" >
             <div class="col-sm-2" *ngFor="let sensor of estacion.sensores;let i = index;" style=" margin-top: 10px;">
               <div class="card" (click)="change(sensor.id_sensor)">
                 <div class="card-header text-center"> <b>{{ sensor.tipo}}</b></div>
@@ -18,26 +23,31 @@
                   </div>
                 </div>
                 <div class="card-footer text-center">
-                  <p> Model: {{ sensor.modelo}}</p>
+                  <p> Modelo: {{ sensor.modelo}}</p>
                 </div>
               </div>
             </div>
 
           </div>
-          <hr>
+
+          <hr *ngIf="display">
+        </div>
+        <div *ngIf="estacion.sensores.length == 0" style="margin: 20px;">
+          <h3>La estación no tiene sensores registrados</h3>
         </div>
 
 
       </mat-tab>
 
     </mat-tab-group>
-    <div class="container">
+
+    <div class="container" *ngIf="display">
       <div class="row">
         <canvas baseChart class="chart" [data]="lineChartData" [options]="lineChartOptions"
           [type]="lineChartType" height="90px"></canvas>
       </div>
-
     </div>
+
   </div>
 
 </div>

@@ -6,7 +6,7 @@ import {  Observable } from 'rxjs';
 import { TrabajadoresService } from 'src/app/core/_services/trabajadores.service';
 import { map, startWith } from 'rxjs/operators';
 import { MessageService } from 'primeng/api';
-import { MANTENEDOR, USARIO_PLANTA } from 'src/app/core/_files/cons';
+import { MANTENEDOR, USUARIO_PLANTA } from 'src/app/core/_files/cons';
 import Swal from 'sweetalert2'
 
 @Component({
@@ -112,7 +112,6 @@ export class TrabajadoresComponent implements OnInit {
   getTrabajadores() {
     this.trabajadorServices.obtenerTrabajadores().subscribe((res: any) => {
       this.trabajadores = res.data;
-      console.log(this.trabajadores);
     });
   }
 
@@ -144,7 +143,7 @@ export class TrabajadoresComponent implements OnInit {
       if (result.isConfirmed) {
         let b: any ={
           id_estacion: this.id_estacion,
-          id_rol: USARIO_PLANTA,
+          id_rol: USUARIO_PLANTA,
           id_trabajador: id_trabajador
         }
         this.asignacionesServices.eliminarAsignacion(b).subscribe((res)=>{

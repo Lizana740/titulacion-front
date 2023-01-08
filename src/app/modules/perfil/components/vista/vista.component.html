@@ -2,14 +2,13 @@
 <div class="m-3 mt-3">
  <div class="card">
   <div class="card-header">
-    <h3>Información de Usuario</h3>
+    <h3>Información de Perfil</h3>
   </div>
   <div class="card-body">
     <form class="mb-4" [formGroup]="formularioUsuario" (ngSubmit)="actualizar()">
-      <br>
       <div class="m-3 mt-3">
         <div class="row">
-          <h3><b> Nombre</b></h3>
+          <h3>Nombre</h3>
           <div class="col">
             <div class="col">
               <mat-form-field appearance="outline" style="width: 100% ;">
@@ -57,18 +56,18 @@
         </div>
         <div class="row">
           <div class="col">
-            <h3>Contraseña</h3>
+            <h3>Cambiar Contraseña</h3>
             <div class="col-sm-6">
               <mat-form-field appearance="outline" style="width: 100% ;">
-                <mat-label>Ingrese contraseña</mat-label>
-                <input matInput type="password" placeholder="Contraseña" formControlName="clave" >
+                <mat-label>Ingrese nueva contraseña</mat-label>
+                <input matInput type="password" placeholder="Dejar en blanco si no se desea cambiar la contraseña" formControlName="clave" >
               </mat-form-field>
             </div>
           </div>
         </div>
         <div class="row"  >
             <div class="col-sm-2" >
-              <button class="btn btn-success" type="submit" ><i class="pi pi-save"></i>Guardar</button>
+              <button class="btn btn-success" type="submit" ><i class="pi pi-save"></i> Guardar</button>
              </div>
 
         </div>

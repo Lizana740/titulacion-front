@@ -7,7 +7,6 @@ import {
   FormGroup,
 } from '@angular/forms';
 import { UsuariosService } from 'src/app/core/_services/usuarios.service';
-import { MessageService } from 'primeng/api';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 @Component({
@@ -48,7 +47,8 @@ export class VistaComponent implements OnInit {
       confirmButtonText: 'Actualizar'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.usuarioServices.updateUsuario(this.formularioUsuario.value).subscribe((res)=>{
+        let id_rol = parseInt(localStorage.getItem('id_rol'))
+        this.usuarioServices.updateUsuario(id_rol, this.formularioUsuario.value).subscribe((res)=>{
           Swal.fire(
             'Éxito',
             'Tus datos han sido actualizados.',

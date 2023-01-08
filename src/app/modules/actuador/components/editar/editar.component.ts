@@ -74,6 +74,6 @@ export class EditarComponent implements OnInit {
 
   }
   volver(){
-    this.router.navigate(['/app/sensor/listar']);
+    this.router.navigate(['/app/actuador/listar']);
   }
 }

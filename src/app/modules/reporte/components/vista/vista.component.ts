@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReporteService } from 'src/app/core/_services/reporte.service';
 import { saveAs } from 'file-saver';
 import { EstacionService } from 'src/app/core/_services/estacion.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-vista',
@@ -61,7 +62,6 @@ export class VistaComponent implements OnInit {
     this.display = true;
   }
   generar() {
-    console.log('inicio::', this.formulario.value);
     switch (this.tipo) {
       case 0:
         console.log(7)
@@ -72,6 +72,12 @@ export class VistaComponent implements OnInit {
             saveAs(blob, 'REPORTE'+new Date().toString().substring(0,10)+'.pdf');
             this.display = false;
             this.vaciar()
+            Swal.fire({
+              icon: 'success',
+              title: 'Reporte generado con éxito!!',
+              showConfirmButton: false,
+              timer: 1500
+            })
           },
           (e) => {
             throw Error(e);
@@ -86,6 +92,12 @@ export class VistaComponent implements OnInit {
             saveAs(blob, 'REPORTE'+new Date().toString().substring(0,10)+'.xlsx');
             this.display = false;
             this.vaciar()
+            Swal.fire({
+              icon: 'success',
+              title: 'Documento generado con éxito!!',
+              showConfirmButton: false,
+              timer: 1500
+            })
           },
         )
         break;

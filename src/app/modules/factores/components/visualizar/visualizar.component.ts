@@ -4,6 +4,8 @@ import { MessageService } from 'primeng/api';
 import { EstacionService } from 'src/app/core/_services/estacion.service';
 import { default as Annotation } from 'chartjs-plugin-annotation';
 import { BaseChartDirective } from 'ng2-charts';
+import { AutentificacionService } from 'src/app/core/_services/autentificacion.service';
+import { ADMINISTRADOR } from 'src/app/core/_files/cons';
 
 @Component({
   selector: 'app-visualizar',
@@ -18,20 +20,22 @@ export class VisualizarComponent implements OnInit{
   datas: any[] = [];
   data!: any;
   num: any[] = [];
+  display:boolean=false;
 
 
   constructor(
     private estacionServices: EstacionService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private autentificacionServices: AutentificacionService,
   ) {
-    this.getEstaciones();
-    setInterval(()=>{
-    },1000)
     Chart.register(Annotation);
   }
 
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getEstaciones();
+
+  }
 
 
   setTimer(): void {
@@ -54,35 +58,51 @@ export class VisualizarComponent implements OnInit{
             this.chart?.update();
           } else {
             data.data.push(Math.random() * (39 - 30) + 30);
-            data.time.push(new Date().toString().substring(0, 11));
+            data.time.push(new Date().toLocaleString());
             this.chart?.update();
             data.data.shift();
             data.time.shift();
-
           }
-
-        },500,sensor.id_sensor)
-
-
+        },3000,sensor.id_sensor)
       }
     }
   }
 
   getEstaciones() {
-    this.estacionServices.getEstacion().subscribe(
-      (res: any) => {
+    let info:any = this.autentificacionServices.infoUser();
+    let id_trabajador = info.trabajador.id_trabajador;
+    let id_rol = parseInt(localStorage.getItem('id_rol'));
+    console.log("ROL::", id_rol)
+    if(id_rol!=ADMINISTRADOR){
+      this.estacionServices.getEstacionesPorRol({id_trabajador:id_trabajador, id_rol:id_rol}).subscribe((res:any)=>{
         this.estaciones = res.data;
+        console.log(res.data)
         this.setTimer();
-      },
-      (err: any) => {
+      },(err: any) => {
         this.messageService.add({
           severity: 'warn',
           detail: 'No se pudo obtener las estaciones',
         });
-      }
-    );
+      })
+    }else{
+      this.estacionServices.getEstacion().subscribe(
+        (res: any) => {
+          this.estaciones = res.data;
+          this.setTimer();
+        },
+        (err: any) => {
+          this.messageService.add({
+            severity: 'warn',
+            detail: 'No se pudo obtener las estaciones',
+          });
+        }
+      );
+    }
+
+
   }
   change(id: number) {
+    this.display = true
     this.data = this.datas.filter(
       (item) => item.id == id
     )[0];
@@ -131,4 +151,9 @@ export class VisualizarComponent implements OnInit{
 
   public lineChartType: ChartType = 'line';
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
+
+  changeTab(){
+    console.log("Cambio de tab")
+    this.display=false;
+  }
 }

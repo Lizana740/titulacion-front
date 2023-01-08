@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SensorService } from 'src/app/core/_services/sensor.service';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-lista',
@@ -49,8 +50,14 @@ export class ListaComponent implements OnInit {
       id_estacion: this.id_estacion,
     };
     this.sensoresService.agregarSensores(body).subscribe((res) => {
-      console.log('Se agrego el sensor exitosamente');
       this.getSensores();
+      Swal.fire({
+        icon: 'success',
+        title: 'Se creo el añadio el sensor con  éxito!!',
+        showConfirmButton: false,
+        timer: 1500
+      })
+
     });
     this.display = false;
   }
@@ -59,8 +66,26 @@ export class ListaComponent implements OnInit {
   }
 
   eliminarSensor(id_sensor: number) {
-    this.sensoresService.eliminarSensor(id_sensor).subscribe((item) => {
-      this.getSensores();
-    });
+    Swal.fire({
+      title: '¿Estas seguro de eliminar?',
+      text: "Los cambios seran permanentes",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'Cancelar',
+      confirmButtonText: 'Si, eliminar'
+    }).then((result) => {
+      this.sensoresService.eliminarSensor(id_sensor).subscribe((item) => {
+        this.getSensores();
+      },(error:any)=>{
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'No se ha podido eliminar el sensor!'
+        })
+      });
+    })
+
   }
 }

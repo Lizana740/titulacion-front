@@ -8,6 +8,7 @@ import {
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { RolService } from 'src/app/core/_services/rol.service';
 import { UsuariosService } from 'src/app/core/_services/usuarios.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-editar',
@@ -42,7 +43,6 @@ export class EditarComponent implements OnInit {
       this.rut = parametros.get('rut')!;
       this.usuarioServices.getUsuario(this.rut).subscribe((res) => {
         let usuario = res.data;
-        console.log(usuario)
         this.formulario = this._formBuilder.group({
           nombre: [usuario.nombre, Validators.required],
           apellido_paterno: [usuario.apellido_paterno, Validators.required],
@@ -66,8 +66,21 @@ export class EditarComponent implements OnInit {
   }
 
   add(){
-    this.usuarioServices.addUsuario(this.formulario.value).subscribe((res) => {
+    let id_rol = parseInt(localStorage.getItem("id_rol"))
+    this.usuarioServices.updateUsuario(id_rol,this.formulario.value).subscribe((res) => {
       this.router.navigate(['app/usuario/listar'])
+      Swal.fire({
+        icon: 'success',
+        title: 'Los datos del usuarios se actualizaron!!',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    },(error:any)=>{
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'No se ha podido actualizar los datos del usuario!'
+      })
     }
     );
   }

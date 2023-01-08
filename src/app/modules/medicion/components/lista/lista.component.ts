@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService, PrimeNGConfig } from 'primeng/api';
 import { MedicionService } from 'src/app/core/_services/medicion.service';
+import Swal from 'sweetalert2';
 import * as XLSX from 'xlsx';
 
 
@@ -10,7 +11,7 @@ import * as XLSX from 'xlsx';
   styleUrls: ['./lista.component.css']
 })
 export class ListaComponent implements OnInit {
-  loading = false;
+  loading = true;
   mediciones!:any[];
   constructor(private medicionService:MedicionService,private messageService: MessageService,private primengConfig: PrimeNGConfig) {
 
@@ -18,17 +19,28 @@ export class ListaComponent implements OnInit {
 
   ngOnInit(): void {
     this.primengConfig.ripple = true;
-    this.getMedicionServices();
+    this.getMedicionServices(true);
     setInterval(()=> {
-      this.getMedicionServices();
+      this.getMedicionServices(false);
 
     },10000);
   }
 
-  getMedicionServices(){
+  getMedicionServices(message){
     this.medicionService.getMediciones().subscribe(res => {
       this.mediciones = res.data;
-    });
+      this.loading= false;
+    },(error:any)=> {
+      if(message){
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'No se pudieron obtener los datos de las mediciones!'
+        })
+      }
+      this.loading= false;
+    }
+    );
   }
 
   name = 'ExcelSheet.xlsx';

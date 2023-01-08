@@ -3,6 +3,7 @@ import { FormBuilder, Validators, FormControl, FormGroup } from '@angular/forms'
 import { Router } from '@angular/router';
 import { RolService } from 'src/app/core/_services/rol.service';
 import { UsuariosService } from 'src/app/core/_services/usuarios.service';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-agregar',
   templateUrl: './agregar.component.html',
@@ -41,9 +42,15 @@ export class AgregarComponent implements OnInit {
 
 
   add(){
-    console.log("FORMULARIO",this.formulario.value)
+
     this.usuarioServices.addUsuario(this.formulario.value).subscribe((res) => {
       this.router.navigate(['app/usuario/listar'])
+      Swal.fire({
+        icon: 'success',
+        title: 'Usuario agregado con éxito!!',
+        showConfirmButton: false,
+        timer: 1500
+      })
     }
     );
   }
