@@ -7,12 +7,12 @@ const routes: Routes = [
   {
     path: 'listar',
     component: ListaComponent,
-    data: {title: ''}
+    data: {breadcrumb: {label : "Lista de actuadores"}}
   },
   {
     path: ':id_actuador',
     component: EditarComponent,
-    data: {title: ''}
+    data: {breadcrumb: {label : "Editar actuador"}}
   },
 
 ];

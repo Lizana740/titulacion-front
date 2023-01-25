@@ -3,7 +3,7 @@
   <div class="card">
     <p-table id="season-tble" #dt2 [value]="mediciones" dataKey="id" [scrollable]="true" scrollHeight="400px"
         [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[15,25,50]" [loading]="loading"
-        [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [paginator]="true" currentPageReportTemplate="Página {first} de {last} de {totalRecords} registros"
         [globalFilterFields]="['ubicacion','descripcion']">
         <ng-template pTemplate="caption">
 
@@ -47,7 +47,7 @@
         </ng-template>
         <ng-template pTemplate="emptymessage">
             <tr>
-                <td colspan="5">No medicione registradas.</td>
+                <td colspan="5">No hay mediciones registradas.</td>
             </tr>
         </ng-template>
     </p-table>

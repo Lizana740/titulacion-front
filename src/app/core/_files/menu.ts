@@ -16,19 +16,19 @@ export const administrador = [
     {
         label: 'Inicio',
         icon: 'pi pi-pw pi-home',
-        route: '/administrador'
+        route: '/app'
 
     },
     {
       label: 'Estaciones',
       items: [
-          { label: 'Ver Estaciones', icon: 'pi pi-fw pi-building', route: 'estacion/listar' },
-          { label: 'Ver Factores Abioticos', icon: 'pi pi-fw pi-building', route: 'factor/visualizar' },
-          { label: 'Mediciones', icon: 'pi pi-chart-bar', route: 'medicion/listar' },
+          { label: ' Ver Estaciones', icon: 'pi pi-fw pi-building', route: 'estacion/listar' },
+          { label: ' Ver Factores Abioticos', icon: 'pi pi-fw pi-building', route: 'factor/visualizar' },
+          { label: ' Mediciones', icon: 'pi pi-chart-pie', route: 'medicion/listar' },
       ]
   },
     {
-      label: 'Estadisticas',
+      label: 'Estadísticas',
       items: [
 
           { label: 'Reportes', icon: 'pi pi pi-chart-bar', route: 'reporte/lista' },
@@ -44,7 +44,7 @@ export const administrador = [
     {
       label: 'Planes',
       items: [
-          { label: 'Crear', icon: 'pi pi-fw pi-users', route: 'sensor/listar' },
+          { label: 'Crear', icon: 'pi pi-fw pi-users', route: 'plan/listar' },
       ]
   },
     {

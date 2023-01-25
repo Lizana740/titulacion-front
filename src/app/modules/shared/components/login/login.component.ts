@@ -13,7 +13,6 @@ import { MessageService } from 'primeng/api';
 export class LoginComponent implements OnInit{
   hide = true;
   hideConfirm = true;
-  emailRegex = '^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$';
 
   formularioLogin: FormGroup;
 
@@ -23,14 +22,14 @@ export class LoginComponent implements OnInit{
     private route: Router,
     private messageService: MessageService
   ) {
-    console.log('Rol', localStorage.getItem('rol'));
+    this.formularioLogin = this._formBuilder.group({
+      correo: ['', [Validators.required, Validators.email]],
+      clave: ['', Validators.required],
+    });
   }
 
   ngOnInit(): void {
-    this.formularioLogin = this._formBuilder.group({
-      correo: ['', Validators.required, Validators.email, ],
-      clave: ['', Validators.required],
-    });
+
   }
 
   submitLogin() {

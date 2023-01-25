@@ -21,53 +21,62 @@ const routes: Routes = [
   {
     path:'app',
     component:MenuComponent,
-    data:{breadcrumb:'inicio'},
+    data: {breadcrumb: {label : "Inicio"}},
     children : [
       {
         path:'estacion',
-        data: {breadcrumb: {skip : true}, only:['ADMINISTRADOR']},
+        data: {breadcrumb: {label : "Estación"}, only:['ADMINISTRADOR']},
         loadChildren: () => import('./modules/instalacion/instalacion.module').then(m => m.InstalacionModule),
 
        },
        {
         path:'usuario',
-        data: {breadcrumb: {skip : true},only:['ADMINISTRADOR']},
+        data: {breadcrumb: {label : "Usuarios"},only:['ADMINISTRADOR']},
         loadChildren: () => import('./modules/usuario/usuario.module').then(m => m.UsuarioModule),
 
        },
        {
         path:'sensor',
-        data: {breadcrumb: {skip : true}},
+        data: {breadcrumb: {label : "Sensor"}},
         loadChildren: () => import('./modules/sensor/sensor.module').then(m => m.SensorModule),
        },
        {
         path:'actuador',
-        data: {breadcrumb: {skip : true}},
+        data: {breadcrumb: {label : "Actuador"}},
         loadChildren: () => import('./modules/actuador/actuador.module').then(m => m.ActuadorModule),
        },
        {
         path:'perfil',
-        data: {breadcrumb: {skip : true}},
+        data: {breadcrumb: {label : "Perfil"}},
         loadChildren: () => import('./modules/perfil/perfil.module').then(m => m.PerfilModule),
 
        },
        {
         path:'medicion',
-        data: {breadcrumb: {skip : true}},
+        data: {breadcrumb: {label : "Medicion"}},
         loadChildren: () => import('./modules/medicion/medicion.module').then(m => m.MedicionModule),
 
        },
        {
         path:'factor',
-        data: {breadcrumb: {skip : true}},
+        data: {breadcrumb: {label : "Factores Abioticos"}},
         loadChildren: () => import('./modules/factores/factores.module').then(m => m.FactoresModule),
 
        },
        {
         path:'reporte',
-        data: {breadcrumb: {skip : true}},
+        data: {breadcrumb: {label : "Reportes"}},
         loadChildren: () => import('./modules/reporte/reporte.module').then(m => m.ReporteModule),
 
+       },
+       {
+        path:'plan',
+        data: {breadcrumb: {label : "Planes"}},
+        loadChildren: () => import('./modules/plan/plan.module').then(m => m.PlanModule),
+       },
+       {
+        path:'',
+        component:HomeComponent
        }
     ]
    },

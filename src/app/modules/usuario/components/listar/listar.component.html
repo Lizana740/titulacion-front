@@ -4,7 +4,7 @@
 
     <p-table #dt2 [value]="usuarios" dataKey="id" [tableStyle]="{'min-height': '5rem'}" [scrollable]="true" scrollHeight="25%" [rows]="5"
         [showCurrentPageReport]="true" [rowsPerPageOptions]="[5,10,25]" [loading]="loading"
-        [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [paginator]="true" currentPageReportTemplate="Página {first} de {last} de {totalRecords} registros"
         [globalFilterFields]="['nombre','rut','correo','status']">
         <ng-template pTemplate="caption">
           <div class="row">

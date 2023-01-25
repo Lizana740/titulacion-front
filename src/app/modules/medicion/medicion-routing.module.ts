@@ -5,7 +5,7 @@ const routes: Routes = [
   {
     path: 'listar',
     component: ListaComponent,
-    data: {title: ''}
+    data: {breadcrumb: {label : "Registro de Mediciones"}}
   }
 ];
 

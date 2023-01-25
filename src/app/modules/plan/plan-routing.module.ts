@@ -1,23 +1,25 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AgregarComponent } from './components/agregar/agregar.component';
 import { ListaComponent } from './components/lista/lista.component';
-import { EditarComponent } from './components/editar/editar.component';
 
 const routes: Routes = [
   {
     path: 'listar',
     component: ListaComponent,
-    data: {breadcrumb: {label : "Lista de Sensores"}}
+    data: {breadcrumb: {label : "Lista"}}
   },
   {
-    path: 'editar/:id_sensor',
-    component: EditarComponent,
-    data: {breadcrumb: {label : "Editar Sensor"}}
+    path: 'agregar/:id_estacion',
+    component: AgregarComponent,
+    data: {breadcrumb: {label : "Añadir plan"}}
   }
+
+
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class SensorRoutingModule { }
+export class PlanRoutingModule { }

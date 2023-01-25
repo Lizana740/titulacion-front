@@ -5,7 +5,7 @@ const routes: Routes = [
   {
     path: 'vista',
     component: VistaComponent,
-    data: {title: 'dede'}
+    data: {breadcrumb: {label : "Editar Perfil"}}
   }
 ];
 

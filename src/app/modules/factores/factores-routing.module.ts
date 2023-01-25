@@ -6,7 +6,7 @@ const routes: Routes = [
   {
     path: 'visualizar',
     component: VisualizarComponent,
-    data: {title: 'dede'}
+    data: {breadcrumb: {label : "Datos en tiempo real"}}
   },
 ];
 

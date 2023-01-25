@@ -7,18 +7,18 @@ import { EditarComponent } from './components/editar/editar.component';
 const routes: Routes = [
   {
     path: 'listar',
+    data: {breadcrumb: {label : "Lista"}},
     component: ListarComponent,
-    data: {title: 'dede'}
   },
   {
     path: 'agregar',
     component: AgregarComponent,
-    data: {title: 'dede'}
+    data: {breadcrumb:  {label : "Crear usuario"} }
   },
   {
     path: 'editar/:rut',
     component: EditarComponent,
-    data: {title: 'dede'}
+    data: {breadcrumb: {label : "Editar usuario"}}
   }
 ];
 

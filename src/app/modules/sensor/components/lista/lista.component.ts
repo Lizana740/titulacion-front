@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SensorService } from 'src/app/core/_services/sensor.service';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TIPO_SENSOR, MODELO_SENSOR } from 'src/app/core/_files/cons';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -14,6 +15,8 @@ export class ListaComponent implements OnInit {
   formulario!: FormGroup;
   id_estacion!: number;
   display = false;
+  tipos:any =TIPO_SENSOR;
+  modelos: any ;
   constructor(
     private sensoresService: SensorService,
     private _formBuilder: FormBuilder,
@@ -32,8 +35,8 @@ export class ListaComponent implements OnInit {
   }
   getSensores() {
     this.sensoresService.getSensores().subscribe((res) => {
-      this.lista = res.data;
-      console.log('Lista', this.lista);
+      this.lista = res.data;/*
+      console.log('Lista', this.lista); */
     });
   }
   add(id: number) {
@@ -87,5 +90,10 @@ export class ListaComponent implements OnInit {
       });
     })
 
+  }
+
+  changeTipoSensor(s:any){
+
+    this.modelos = MODELO_SENSOR.filter((item)=> item.tipo==  this.formulario.value.tipo);
   }
 }

@@ -5,7 +5,6 @@ import { FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {  Observable } from 'rxjs';
 import { TrabajadoresService } from 'src/app/core/_services/trabajadores.service';
 import { map, startWith } from 'rxjs/operators';
-import { MessageService } from 'primeng/api';
 import { MANTENEDOR, USUARIO_PLANTA } from 'src/app/core/_files/cons';
 import Swal from 'sweetalert2'
 
@@ -39,9 +38,7 @@ export class TrabajadoresComponent implements OnInit {
     private trabajadorServices: TrabajadoresService,
     private asignacionesServices: AsignacionService,
     private activatedRoute: ActivatedRoute,
-    private router: Router,
     private _builderFrom: FormBuilder,
-    private messageService: MessageService
   ) {
     this.formulario = this._builderFrom.group({
       trabajador: ['', Validators.required],

@@ -68,7 +68,6 @@
                 class="mat-list-item mat-focus-indicator ng-tns-c142-12 ng-star-inserted"
                 style="color:white"
                 >
-
                     {{item.label}}
                 </mat-list-item>
             </ng-template>
@@ -86,15 +85,14 @@
                                 </mat-expansion-panel-header>
                                 <mat-nav-list dense *ngFor="let o of option.items">
                                     <mat-list-item [routerLink]="o.route" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                                        <span matBadgeColor="warn" matBadgeOverlap="false"  style="color:white" >{{o.label}}</span>
+                                        <span matBadgeColor="warn" matBadgeOverlap="false"  style="color:white" > {{o.label}}</span>
                                     </mat-list-item>
                                 </mat-nav-list>
                             </mat-expansion-panel>
                         </ng-template>
                         <ng-template #b>
                             <mat-list-item routerLinkActive="light-blue accent-2" [routerLink]="option.route" >
-                                <i [class]="option.icon" style="color:white" ></i>
-                                <span matBadgeColor="warn" matBadgeOverlap="false" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" style="color:white" >{{option.label}}</span>
+                                <i [class]="option.icon" style="color:white" ></i> &nbsp; &nbsp;<span matBadgeColor="warn" matBadgeOverlap="false" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" style="color:white" > {{option.label}}</span>
                               </mat-list-item>
                         </ng-template>
                     </mat-nav-list>
@@ -105,7 +103,7 @@
 
     <div class="row">
       <div class="col-md-12 mt-2" >
-        <p-breadcrumb [model]="items"></p-breadcrumb>
+        <p-breadcrumb [model]="this.menuItems" routerLinkActive></p-breadcrumb>
       </div>
     </div>
     <div class="row">

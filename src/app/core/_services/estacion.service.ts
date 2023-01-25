@@ -12,6 +12,9 @@ export class EstacionService {
   getEstacion(){
     return this.genericServices.getGeneric(this.url, 'lista');
   }
+  getEstacionId(id:number){
+    return this.genericServices.getGeneric(this.url, id);
+  }
   deleteEstacion(id:string){
     return this.genericServices.deleteGeneric(this.url,id,"");
   }

@@ -11542,3 +11542,8 @@ body {
   background-color:red
 }
 
+.mat-expansion-panel-header-description,
+.mat-expansion-indicator::after {
+    color: white;
+}
+

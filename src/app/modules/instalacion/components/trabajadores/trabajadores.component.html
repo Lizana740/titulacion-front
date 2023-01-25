@@ -106,10 +106,12 @@
     <div class="row">
       <mat-form-field appearance="outline"  >
         <mat-label>Rol</mat-label>
-        <select matNativeControl  [(ngModel)]="this.body.id_rol" required>
-          <option value="-1" >Seleccione un rol ...</option>
-          <option *ngFor="let rol of this.roles" [value]="rol.id_rol"> {{rol.valor}}</option>
-        </select>
+        <mat-select  [(ngModel)]="this.body.id_rol" required>
+          <mat-option value="-1" >Seleccione un rol ...</mat-option>
+          <mat-option *ngFor="let rol of this.roles" [value]="rol.id_rol">
+            {{rol.valor}}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
     </div>
 

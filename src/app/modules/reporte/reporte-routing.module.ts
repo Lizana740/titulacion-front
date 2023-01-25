@@ -6,7 +6,7 @@ const routes: Routes = [
   {
     path: 'lista',
     component: VistaComponent,
-    data: {title: ''}
+    data: {breadcrumb: {label : "Lista de Reportes"}}
   }
 ];
 

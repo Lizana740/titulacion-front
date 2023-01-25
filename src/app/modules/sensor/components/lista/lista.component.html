@@ -81,7 +81,7 @@
 </div>
 
 <p-dialog class="m-3 mt-3" [(visible)]="display" header="Agregar Sensor" [breakpoints]="{'960px': '75vw'}"
-  [style]="{width: '50vw'}" [draggable]="false" [resizable]="false" [modal]="true">
+[style]="{width: '60vw', height : '38vw'}" [draggable]="false" [resizable]="false" [modal]="true">
   <form class="mb-4" [formGroup]="formulario">
     <br>
     <div class="container">
@@ -91,7 +91,13 @@
           <div class="col-sm-10">
             <mat-form-field appearance="outline" style="width: 100% ;">
               <mat-label>Ingrese tipo de sensor</mat-label>
-              <input matInput placeholder="Tipo" formControlName="tipo" required>
+              <mat-select placeholder="Tipo" formControlName="tipo" (selectionChange)="changeTipoSensor(this)">
+                <mat-option *ngFor="let sensor of tipos" [value]="sensor">
+                  {{sensor}}
+                </mat-option>
+              </mat-select>
+
+
             </mat-form-field>
           </div>
         </div>
@@ -100,7 +106,13 @@
           <div class="col-sm-10">
             <mat-form-field appearance="outline" style="width: 100% ;">
               <mat-label>Ingrese el modelo</mat-label>
-              <input matInput placeholder="Modelo" formControlName="modelo" required>
+              <mat-select placeholder="Modelo" formControlName="modelo">
+                <mat-option *ngFor="let modelo of modelos" [value]="modelo.modelo">
+                  {{modelo.modelo}}
+                </mat-option>
+              </mat-select>
+
+
             </mat-form-field>
           </div>
         </div>

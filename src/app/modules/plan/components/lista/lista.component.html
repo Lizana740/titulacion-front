@@ -1,0 +1,78 @@
+<div class="m-3 mt-3">
+  <div class="card">
+    <div class="card-header " style="color: grey ">
+      <h2> Lista de Estaciones</h2>
+    </div>
+    <p-table [value]="estaciones" dataKey="nombre">
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width: 5rem"></th>
+          <th pSortableColumn="nombre">Nombre Estación<p-sortIcon field="nombre"></p-sortIcon></th>
+          <th pSortableColumn="ubicacion">Ubicación<p-sortIcon field="ubicacion"></p-sortIcon></th>
+          <th pSortableColumn="">Acciones<p-sortIcon></p-sortIcon></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-lista let-expanded="expanded">
+        <tr>
+          <td>
+            <button [pRowToggler]="lista" class="btn" pTooltip="Expandir" tooltipPosition="top">
+              <i [class]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'">
+
+              </i>
+            </button>
+          </td>
+          <td>{{lista.nombre}}</td>
+          <td>{{lista.ubicacion }}</td>
+          <td>
+            <div class="row">
+              <div class="col"><button  class="btn btn-success" pTooltip="Agregar" (click)="crearPlan(lista.id_estacion)"
+                  tooltipPosition="top"> <i class="pi pi-plus-circle"></i></button></div>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="rowexpansion" let-ordes>
+        <tr>
+          <td colspan="5">
+            <div class="p-3">
+              <p-table [value]="ordes.planes" dataKey="id_sensor">
+                <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="modelo">ID<p-sortIcon field="customer"></p-sortIcon></th>
+          <th pSortableColumn="tipo"> Fecha<p-sortIcon field="date"></p-sortIcon></th>
+          <th pSortableColumn="descripcion">Estado<p-sortIcon field="amount"></p-sortIcon></th>
+          <th>Acciones</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-order>
+        <tr>
+          <td>{{order.modelo}}</td>
+          <td>{{order.tipo}}</td>
+          <td>{{order.descripcion}}</td>
+          <td class="row">
+            <div class="col">
+              <button class="btn btn-danger"  pTooltip="Eliminar"
+                tooltipPosition="top"> <i class="pi pi-trash"></i></button>
+            </div>
+            <div class="col">
+              <button class="btn btn-warning text-white" ><i class="pi pi-pencil"
+                  pTooltip="Editar" tooltipPosition="top"></i></button>
+            </div>
+
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="6">No hay planes creados para esta estación</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  </td>
+  </tr>
+  </ng-template>
+  </p-table>
+</div>
+</div>
+

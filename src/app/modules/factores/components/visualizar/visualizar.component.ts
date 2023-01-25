@@ -72,11 +72,10 @@ export class VisualizarComponent implements OnInit{
     let info:any = this.autentificacionServices.infoUser();
     let id_trabajador = info.trabajador.id_trabajador;
     let id_rol = parseInt(localStorage.getItem('id_rol'));
-    console.log("ROL::", id_rol)
     if(id_rol!=ADMINISTRADOR){
       this.estacionServices.getEstacionesPorRol({id_trabajador:id_trabajador, id_rol:id_rol}).subscribe((res:any)=>{
         this.estaciones = res.data;
-        console.log(res.data)
+        //console.log(res.data)
         this.setTimer();
       },(err: any) => {
         this.messageService.add({

@@ -2,7 +2,7 @@
   <div class="card">
     <p-table #dt2 [value]="estaciones" dataKey="id" [scrollable]="true" scrollHeight="400px" [rows]="10"
       [showCurrentPageReport]="true" [rowsPerPageOptions]="[15,25,50]" [loading]="loading" [paginator]="true"
-      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      currentPageReportTemplate="Página {first} de {last} de {totalRecords} registros"
       [globalFilterFields]="['nombre','rut','correo','status']">
       <ng-template pTemplate="caption">
         <div class="row">
@@ -24,7 +24,7 @@
       <ng-template pTemplate="header">
         <tr>
           <th>Nombre</th>
-          <th>Ubicacion</th>
+          <th>Ubicación</th>
           <th style="width: 6rem">Acciones</th>
         </tr>
         <tr>
@@ -84,7 +84,7 @@
         <h2>Nombre</h2>
         <div class="col-sm-10">
           <mat-form-field appearance="outline" style="width: 100% ;">
-            <mat-label>Ingrese nombre de la estación</mat-label>
+            <mat-label>Ingrese un nombre para la estación</mat-label>
             <input matInput placeholder="Nombre" formControlName="nombre" required>
           </mat-form-field>
         </div>
@@ -93,8 +93,8 @@
         <h2>Ubicación</h2>
         <div class="col-sm-10">
           <mat-form-field appearance="outline" style="width: 100% ;">
-            <mat-label>Ingrese ubicación</mat-label>
-            <input matInput placeholder="ubicacion" formControlName="ubicacion" required>
+            <mat-label>Ingrese una ubicación</mat-label>
+            <input matInput placeholder="Ubicación de la estación " formControlName="ubicacion" required>
           </mat-form-field>
         </div>
       </div>

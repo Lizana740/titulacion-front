@@ -1,0 +1,179 @@
+<div class="container" style="height:1000px;">
+  <div class="m-3 mt-3">
+    <div class="card ">
+      <div class="row">
+        <div class="col-12 m-3 mt-3">
+          <div class="col-sm-10">
+            <form [formGroup]="formulariocabecera">
+              <div class="row">
+                <h2>Selecione el periodo de registro las mediciones</h2>
+                <div class="col-sm-12">
+                  <mat-form-field appearance="outline" style="width: 40% ;">
+                    <mat-label>Rango</mat-label>
+                    <input matInput type="time" placeholder="ej: 01:20" formControlName="periodo">
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <h2>Ingrese una breve descripción</h2>
+                <div class="col-sm-12">
+                  <mat-form-field appearance="outline" style="width: 100% ;">
+                    <mat-label>Descripción</mat-label>
+                    <textarea matInput placeholder="Descripción del plan" formControlName="descripcion"
+                      required></textarea>
+                  </mat-form-field>
+                </div>
+              </div>
+            </form>
+
+          </div>
+
+          <button *ngIf="loading" class="btn btn-success"><i class="pi pi-user-plus"></i> Asignar </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="m-3 mt-3">
+    <div class="card">
+      <mat-tab-group>
+        <mat-tab label="Sensores">
+          <p-table [value]="estacion.sensores">
+            <ng-template pTemplate="header">
+              <tr>
+                <th>ID</th>
+                <th>Tipo</th>
+                <th>Acción</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-sensor>
+              <tr>
+                <td style="width: 10%"> {{sensor.id_sensor}}</td>
+                <td> {{sensor.tipo}}</td>
+                <td>
+                  <div class="row">
+                    <div class="col">
+                      <button class="btn btn-info"> <i class="pi pi-cog"></i></button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+              <tr>
+                <td colspan="3">No hay sensores registrados en para esta estación</td>
+              </tr>
+            </ng-template>
+          </p-table>
+
+
+        </mat-tab>
+        <mat-tab label="Actuadores">
+          <p-table [value]="estacion.actuadores">
+            <ng-template pTemplate="header">
+              <tr>
+                <th>ID</th>
+                <th>Tipo </th>
+                <th>Acción</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-actuador>
+              <tr>
+                <td style="width: 10%"> {{actuador.id_actuador}}</td>
+                <td> {{actuador.tipo}}</td>
+                <td>
+                  <div class="row">
+                    <div class="col">
+                      <button class="btn btn-info" (click)="configurarActuador(actuador.id_actuador)"> <i
+                          class="pi pi-cog"></i></button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+              <tr>
+                <td colspan="3">No hay actuadores registrados en para esta estación</td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+  <div class="m-3 mt-3">
+    <div class="card p-3">
+      <div class="row"  >
+        <div class="col-2" >
+          <button class="btn btn-success" (click)="enviar()"><i class="pi pi-save"></i> Guardar</button>
+         </div>
+         <div class="col-2">
+           <button class="btn btn-danger"><i class="pi pi-times"></i> Cancelar</button>
+         </div>
+    </div>
+
+
+    </div>
+  </div>
+
+
+  <p-dialog header="Configurar Actuador" [(visible)]="display" [breakpoints]="{'75vw': '50vw'}"
+    [style]="{width: '60vw', height : '38vw'}" [draggable]="false" [resizable]="false" [modal]="true">
+    <ng-template pTemplate="body">
+      <form [formGroup]="formulario">
+        <div class="col-sm-10">
+          <div class="row">
+            <h2>Selecione el sensor</h2>
+            <div class="col-sm-12">
+              <mat-form-field appearance="outline" style="width: 100% ;">
+                <mat-label>Sensor</mat-label>
+                <mat-select formControlName="sensor">
+                  <mat-option *ngFor="let food of estacion.sensores" [value]="food.id_sensor">
+                    {{food.tipo}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <h2>Condición</h2>
+            <div class="col-sm-12">
+              <mat-form-field appearance="outline" style="width: 100% ;">
+                <mat-label>Operación</mat-label>
+                <mat-select formControlName="op">
+                  <mat-option *ngFor="let food of options" [value]="food.label">
+                    {{food.label}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <h2>Valor</h2>
+            <div class="col-sm-12">
+              <mat-form-field appearance="outline" style="width: 100% ;">
+                <mat-label></mat-label>
+                <input matInput type="number" placeholder="ej: 10, 100" formControlName="valor">
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row">
+            <h2>Tiempo de operación</h2>
+            <div class="col-sm-12">
+              <mat-form-field appearance="outline" style="width: 100% ;">
+                <mat-label>Tiempo</mat-label>
+                <input matInput placeholder="ej: 100s, 10m" formControlName="time" type="time">
+              </mat-form-field>
+            </div>
+          </div>
+
+        </div>
+      </form>
+
+
+    </ng-template>
+    <ng-template pTemplate="footer">
+      <button (click)="cancel()" class="btn btn-danger"><i class="pi pi-times"></i> Cancelar</button>
+      <button class="btn btn-primary" (click)="guardar()"> <i class="pi pi-check"></i> Guardar</button>
+    </ng-template>
+  </p-dialog>
