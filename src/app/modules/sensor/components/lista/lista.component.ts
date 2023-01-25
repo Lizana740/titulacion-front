@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { SensorService } from 'src/app/core/_services/sensor.service';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { TIPO_SENSOR, MODELO_SENSOR } from 'src/app/core/_files/cons';
+import { TIPO_SENSOR, MODELO_SENSOR, MANTENEDOR } from 'src/app/core/_files/cons';
 import Swal from 'sweetalert2';
+import { AutentificacionService } from 'src/app/core/_services/autentificacion.service';
 
 @Component({
   selector: 'app-lista',
@@ -11,22 +12,45 @@ import Swal from 'sweetalert2';
   styleUrls: ['./lista.component.css'],
 })
 export class ListaComponent implements OnInit {
-  lista: any;
+  lista: any =[];
   formulario!: FormGroup;
+  formularioCongig!: FormGroup;
   id_estacion!: number;
   display = false;
   tipos:any =TIPO_SENSOR;
   modelos: any ;
+  displayConfig :boolean = false
+  id_sensor:number;
+  rol:any= localStorage.getItem('rol');
+  puertos =[
+    {p:'D1' ,tipo: "DIGITAL"},
+    {p:'D2',tipo: "DIGITAL"},
+    {p:'D3',tipo: "DIGITAL"},
+    {p:'D4',tipo: "DIGITAL"},
+    {p:'D5',tipo: "DIGITAL"},
+    {p:'D6',tipo: "DIGITAL"},
+    {p:'D7',tipo: "DIGITAL"},
+    {p:'D8',tipo: "DIGITAL"},
+    {p:'D9',tipo: "DIGITAL"},
+    {p:'A0',tipo: "ANALOGICO"},
+
+  ]
   constructor(
     private sensoresService: SensorService,
     private _formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private autentificacionServices: AutentificacionService,
   ) {
     this.formulario = this._formBuilder.group({
       descripcion: ['', Validators.required],
       tipo: ['', Validators.required],
       escala: ['', Validators.required],
       modelo: ['', Validators.required],
+    });
+    this.formularioCongig = this._formBuilder.group({
+      puerto: ['', Validators.required],
+      map: ['', Validators.required],
+      voltaje: ['', Validators.required],
     });
   }
 
@@ -35,7 +59,22 @@ export class ListaComponent implements OnInit {
   }
   getSensores() {
     this.sensoresService.getSensores().subscribe((res) => {
-      this.lista = res.data;/*
+
+      let info:any = this.autentificacionServices.infoUser();
+      let id_trabajador = info.trabajador.id_trabajador;
+      if(this.rol=="MANTENEDOR"){
+        for(var a of res.data){
+
+          for(var b of a.trabajadores){
+            if(b.id_trabajador == id_trabajador && b.Trabaja.id_rol == MANTENEDOR ){
+              this.lista.push(a);
+            }
+          }
+        }
+      }else{
+        this.lista = res.data;
+      }
+      /*
       console.log('Lista', this.lista); */
     });
   }
@@ -95,5 +134,26 @@ export class ListaComponent implements OnInit {
   changeTipoSensor(s:any){
 
     this.modelos = MODELO_SENSOR.filter((item)=> item.tipo==  this.formulario.value.tipo);
+  }
+
+  configurar(id_sensor){
+    this.displayConfig = true;
+    this.id_sensor = id_sensor
+  }
+  configurarSensor(){
+    if(this.formularioCongig.valid){
+      this.sensoresService.configurarSensor(this.id_sensor, this.formularioCongig.value).subscribe((res)=>{
+        this.getSensores();
+        this.displayConfig = false;
+        Swal.fire({
+          icon: 'success',
+          title: 'Sensor configurado con éxito!!',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      })
+
+    }
+
   }
 }

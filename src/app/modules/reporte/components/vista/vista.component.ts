@@ -26,7 +26,7 @@ export class VistaComponent implements OnInit {
     {
       id: 1,
       label: 'Reporte de mediciones',
-      icon: 'pi pi-file-pdf',
+      icon: 'pi pi-file-excel',
       buttonlabel: 'Excel',
       style: 'success ',
     },

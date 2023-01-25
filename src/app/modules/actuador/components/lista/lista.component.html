@@ -10,7 +10,7 @@
           <th pSortableColumn="nombre">Nombre Estación<p-sortIcon field="nombre"></p-sortIcon></th>
           <th pSortableColumn="ubicacion">Ubicación<p-sortIcon field="ubicacion"></p-sortIcon></th>
           <th pSortableColumn="id_estacion">Conectados <p-sortIcon field="category"></p-sortIcon></th>
-          <th pSortableColumn="">Acciones<p-sortIcon ></p-sortIcon></th>
+          <th *ngIf="rol=='ADMINISTRADOR'" pSortableColumn="">Acciones<p-sortIcon ></p-sortIcon></th>
       </tr>
   </ng-template>
   <ng-template pTemplate="body" let-lista let-expanded="expanded">
@@ -21,7 +21,7 @@
           <td>{{lista.nombre}}</td>
           <td>{{lista.ubicacion }}</td>
           <td>{{lista.actuadores.length }}</td>
-          <td > <button (click)="add(lista.id_estacion)"  class="btn btn-success" pTooltip="Añadir" tooltipPosition="top" ><i class="pi pi-plus-circle"></i></button></td>
+          <td *ngIf="rol=='ADMINISTRADOR'"> <button (click)="add(lista.id_estacion)"  class="btn btn-success" pTooltip="Añadir" tooltipPosition="top" ><i class="pi pi-plus-circle"></i></button></td>
       </tr>
   </ng-template>
   <ng-template pTemplate="rowexpansion" let-ordes>
@@ -34,7 +34,7 @@
                               <th pSortableColumn="modelo">Modelo <p-sortIcon field="customer"></p-sortIcon></th>
                               <th pSortableColumn="tipo"> Tipo<p-sortIcon field="date"></p-sortIcon></th>
                               <th pSortableColumn="descripcion">Descripción<p-sortIcon field="amount"></p-sortIcon></th>
-                              <th style="width: 4rem">Acciones</th>
+                              <th  style="width: 4rem">Acciones</th>
                           </tr>
                       </ng-template>
                       <ng-template pTemplate="body" let-order>
@@ -43,10 +43,15 @@
                               <td>{{order.tipo}}</td>
                               <td>{{order.descripcion}}</td>
                               <td class="row">
-                                <button  class="btn btn-danger col" (click)="eliminarActuador(order.id_actuador)"  style="margin-right: 5px;" pTooltip="Eliminar" tooltipPosition="top"><i class="pi pi-trash"></i></button>
+                                <button  *ngIf="rol=='ADMINISTRADOR'" class="btn btn-danger col" (click)="eliminarActuador(order.id_actuador)"  style="margin-right: 5px;" pTooltip="Eliminar" tooltipPosition="top"><i class="pi pi-trash"></i></button>
 
-                                <button  class="btn btn-warning col" (click)="editarActuador(order.id_actuador)"> <i class="pi pi-pencil" style="color:white" pTooltip="Editar" tooltipPosition="top"></i></button>
+                                <button  *ngIf="rol=='ADMINISTRADOR'" class="btn btn-warning col" (click)="editarActuador(order.id_actuador)"> <i class="pi pi-pencil" style="color:white" pTooltip="Editar" tooltipPosition="top"></i></button>
+                                <div  >
+                                  <button *ngIf="rol=='MANTENEDOR'" class="btn btn-primary text-white" (click)="configurar(order.id_actuador)"><i class="pi pi-cog"
+                                      pTooltip="Configurar" tooltipPosition="top"></i></button>
+                                </div>
                               </td>
+
                           </tr>
                       </ng-template>
                       <ng-template pTemplate="emptymessage">
@@ -109,3 +114,56 @@
     </ng-template>
 </p-dialog>
 
+
+<p-dialog class="m-3 mt-3" [(visible)]="displayConfig" header="Configurar Actuador" [breakpoints]="{'960px': '75vw'}"
+  [style]="{width: '60vw', height : '38vw'}" [draggable]="false" [resizable]="false" [modal]="true">
+  <form class="mb-4" [formGroup]="formularioCongig">
+    <br>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <h2>Puerto </h2>
+          <div class="col-sm-10">
+            <mat-form-field appearance="outline" style="width: 100% ;">
+              <mat-label>Sleccione un puerto</mat-label>
+              <mat-select placeholder="Modelo" formControlName="puerto">
+                <mat-option *ngFor="let puerto of puertos" [value]="puerto.p">
+                  {{puerto.p}} - {{puerto.tipo}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <h2>Rangos  </h2>
+          <div class="col-sm-10">
+            <mat-form-field appearance="outline" style="width: 100% ;">
+              <mat-label>Ingrese rango de mapeo</mat-label>
+              <input matInput placeholder="ej: [1-100], [0-1000] " formControlName="map" required>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <h2>Tensión  </h2>
+          <div class="col-sm-10">
+            <mat-form-field appearance="outline" style="width: 100% ;">
+              <mat-label>Voltaje de operaión</mat-label>
+              <mat-select placeholder="Modelo" formControlName="voltaje">
+              <mat-option  [value]="3.3"> 3.3 V</mat-option>
+              <mat-option  [value]="5"> 5 V</mat-option>
+            </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <ng-template pTemplate="footer">
+    <button class="btn btn-danger" (click)="displayConfig =!displayConfig"><i class="pi pi-times"></i> Cancelar</button>
+    <button class="btn btn-primary" (click)="configurarActuador()"><i class="pi pi-check"></i> Guardar</button>
+  </ng-template>
+</p-dialog>

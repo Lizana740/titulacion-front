@@ -1,16 +1,68 @@
 <div class="m-3 mt-3">
-  <p-panel header="Header"  [toggleable]="true">
+  <p-panel header="Información" [toggleable]="true">
     <ng-template pTemplate="icons">
-        <button pButton class="p-panel-header-icon p-link" icon="pi pi-cog" (click)="menu.toggle($event)">
-        </button>
-        <p-menu #menu id="config_menu"  [popup]="true"></p-menu>
+
+      <p-menu #menu id="config_menu" [popup]="true"></p-menu>
     </ng-template>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-</p-panel>
+    <p>El <b>Sitema de Monitoreo y Control </b>, este sistema permite el control y registro de factores abíoticos por medio de la utilización de sensores y actuadores </p>
+  </p-panel>
 </div>
+<div class="m-3 mt-3">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-header">
+          <b style="text-align:center">Monitoreo</b>
+        </div>
+        <div class="card-body" style="text-align: center;">
+          <i class="pi pi-fw pi-chart-line" routerLink="/app/factor/visualizar" style="font-size: 1000%;cursor: pointer"></i>
+        </div>
+        <div class="card-footer" style="text-align: center" >
+          Factores Abíoticos
+        </div>
+      </div>
+    </div>
 
+    <div class="col">
+      <div class="card">
+        <div class="card-header">
+          <b style="text-align:center">Control</b>
+                </div>
+        <div class="card-body " style="text-align: center;">
+          <i class="pi pi-cog" style="font-size: 1000%;cursor: pointer" routerLink="/app/sensor/listar"></i>
+        </div>
+        <div class="card-footer" style="text-align: center" >
+          Configuración de Sensores y Actuadores
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="card-header">
+          <b style="text-align:center">Estadísticas</b>
+        </div>
+        <div class="card-body" style="text-align: center;">
+          <i class="pi pi pi-chart-bar" routerLink="/app/reporte/lista" style="font-size: 1000%;cursor: pointer"></i>
+        </div>
+        <div class="card-footer" style="text-align: center" >
+          Reportes
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card" >
+        <div class="card-header">
+          <b style="text-align:center">Cuentas</b>
+        </div>
+        <div class="card-body" style="text-align: center;">
+          <i class="pi pi pi-users" routerLink="/app/usuario/listar" style="font-size: 1000%;cursor: pointer"></i>
+        </div>
+        <div class="card-footer" style="text-align: center" >
+          Administración de Usuarios
+        </div>
+      </div>
+    </div>
 
+  </div>
 
+</div>

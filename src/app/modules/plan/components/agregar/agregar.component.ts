@@ -4,6 +4,7 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { EstacionService } from 'src/app/core/_services/estacion.service';
 import { FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import Swal from 'sweetalert2'
+import { PlanService } from 'src/app/core/_services/plan.service';
 
 @Component({
   selector: 'app-agregar',
@@ -25,6 +26,7 @@ export class AgregarComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private estacionServices: EstacionService,
     private _builderFrom: FormBuilder,
+    private planServices:PlanService
   ) {
     this.formulario = this._builderFrom.group({
       time: ['', Validators.required],
@@ -89,7 +91,15 @@ export class AgregarComponent implements OnInit {
           cabecera:this.formulariocabecera.value,
           actuadores: this.actuadores
         }
-        console.log("BODY::", body)
+
+        this.planServices.guardar(this.estacion.id_estacion, body).subscribe((res)=>{
+          Swal.fire({
+            icon: 'success',
+            title: 'Se creo el plan con  éxito!!',
+            showConfirmButton: false,
+            timer: 1500
+          })
+        })
       }else {
         console.log("El formulario esta incompleto")
         Swal.fire({

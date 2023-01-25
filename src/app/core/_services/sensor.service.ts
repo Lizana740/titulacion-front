@@ -24,4 +24,7 @@ export class SensorService {
   actualizarSensor(id_sensor:any,body:any){
     return this.genericServices.postGeneric(this.url,id_sensor, body)
   }
+  configurarSensor(id_sensor:any,body:any){
+    return this.genericServices.postGeneric(this.url+"config/",id_sensor, body)
+  }
 }

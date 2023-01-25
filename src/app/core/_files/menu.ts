@@ -23,8 +23,8 @@ export const administrador = [
       label: 'Estaciones',
       items: [
           { label: ' Ver Estaciones', icon: 'pi pi-fw pi-building', route: 'estacion/listar' },
-          { label: ' Ver Factores Abioticos', icon: 'pi pi-fw pi-building', route: 'factor/visualizar' },
-          { label: ' Mediciones', icon: 'pi pi-chart-pie', route: 'medicion/listar' },
+          { label: ' Ver Factores Abioticos', icon: 'pi pi-fw pi-chart-line', route: 'factor/visualizar' },
+          { label: ' Mediciones', icon: 'pi  pi-fw pi-chart-pie', route: 'medicion/listar' },
       ]
   },
     {
@@ -37,14 +37,14 @@ export const administrador = [
     {
         label: 'Dispositivos',
         items: [
-            { label: 'Sensores', icon: 'pi pi-fw pi-users', route: 'sensor/listar' },
-            { label: 'Actuadores', icon: 'pi pi-fw pi-users', route: 'actuador/listar' },
+            { label: 'Sensores', icon: 'pi pi-fw pi-compass', route: 'sensor/listar' },
+            { label: 'Actuadores', icon: 'pi pi-fw pi-directions', route: 'actuador/listar' },
         ]
     },
     {
       label: 'Planes',
       items: [
-          { label: 'Crear', icon: 'pi pi-fw pi-users', route: 'plan/listar' },
+          { label: 'Crear', icon: 'pi pi-fw pi-calendar', route: 'plan/listar' },
       ]
   },
     {
@@ -60,19 +60,20 @@ export const mantenedor = [
   {
       label: 'Inicio',
       icon: 'pi pi-pw pi-home',
-      route: '/mantenedor'
+      route: '/app'
 
   },
   {
     label: 'Mis Estaciones',
     items: [
-        { label: 'Ver Estaciones', icon: 'pi pi-fw pi-users', route: 'instalacion/listar' },
+        { label: 'Ver Estaciones', icon: 'pi pi-fw pi-users',  route:  'estacion/asignada' },
     ]
   },
   {
     label: 'Configuración',
     items: [
-        { label: 'Ver Estaciones', icon: 'pi pi-fw pi-users', route: 'instalacion/listar' },
+      { label: 'Sensores', icon: 'pi pi-fw pi-compass', route: 'sensor/listar' },
+      { label: 'Actuadores', icon: 'pi pi-fw pi-directions', route: 'actuador/listar' },
     ]
   }
 
@@ -83,21 +84,21 @@ export const usuario_planta = [
   {
       label: 'Inicio',
       icon: 'pi pi-pw pi-home',
-      route: '/planta'
+      route: '/app'
 
   },
   {
     label: 'Factores',
     icon: 'pi pi-fw pi-users',
     items: [
-        { label: 'Visualizar Factores', icon: 'pi pi-fw pi-users', route: 'factor/visualizar' },
+        { label: 'Visualizar Factores', icon: 'pi pi-fw pi-chart-line', route: 'factor/visualizar' },
     ]
   },
   {
     label: 'Estaciones',
     icon: 'pi pi-fw pi-users',
     items: [
-        { label: 'Mis estaciones aisgnadas', icon: 'pi pi-fw pi-users', route: 'estacion/asignada' },
+        { label: 'Mis estaciones aisgnadas', icon: 'pi pi-fw pi-building', route: 'estacion/asignada' },
     ]
   }
 

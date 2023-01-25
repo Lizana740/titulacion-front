@@ -14,6 +14,22 @@ export class ListaComponent implements OnInit {
   lista: any;
   formulario!: FormGroup;
   id_estacion: number = -1;
+  displayConfig :boolean = false
+  rol:any= localStorage.getItem('rol');
+  formularioCongig!: FormGroup;
+  puertos =[
+    {p:'D1' ,tipo: "DIGITAL"},
+    {p:'D2',tipo: "DIGITAL"},
+    {p:'D3',tipo: "DIGITAL"},
+    {p:'D4',tipo: "DIGITAL"},
+    {p:'D5',tipo: "DIGITAL"},
+    {p:'D6',tipo: "DIGITAL"},
+    {p:'D7',tipo: "DIGITAL"},
+    {p:'D8',tipo: "DIGITAL"},
+    {p:'D9',tipo: "DIGITAL"},
+    {p:'A0',tipo: "ANALOGICO"},
+
+  ]
   constructor(
     private actuadorService: ActuadorService,
     private _formBuilder: FormBuilder,
@@ -24,6 +40,11 @@ export class ListaComponent implements OnInit {
       tipo: ['', Validators.required],
       escala: ['', Validators.required],
       modelo: ['', Validators.required],
+    });
+    this.formularioCongig = this._formBuilder.group({
+      puerto: ['', Validators.required],
+      map: ['', Validators.required],
+      voltaje: ['', Validators.required],
     });
   }
 
@@ -87,6 +108,12 @@ export class ListaComponent implements OnInit {
 
   editarActuador(id_actuador:number) {
     this.router.navigate([`app/actuador/${id_actuador}`])
+
+  }
+  configurar(id_actuador){
+    this.displayConfig=true
+  }
+  configurarActuador(){
 
   }
 }

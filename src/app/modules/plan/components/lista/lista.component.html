@@ -39,19 +39,19 @@
                 <ng-template pTemplate="header">
         <tr>
           <th pSortableColumn="modelo">ID<p-sortIcon field="customer"></p-sortIcon></th>
-          <th pSortableColumn="tipo"> Fecha<p-sortIcon field="date"></p-sortIcon></th>
-          <th pSortableColumn="descripcion">Estado<p-sortIcon field="amount"></p-sortIcon></th>
+          <th pSortableColumn="tipo"> Descripción<p-sortIcon field="date"></p-sortIcon></th>
+          <th pSortableColumn="descripcion">Fecha<p-sortIcon field="amount"></p-sortIcon></th>
           <th>Acciones</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-order>
         <tr>
-          <td>{{order.modelo}}</td>
-          <td>{{order.tipo}}</td>
+          <td>{{order.id_plan}}</td>
+          <td>{{order.configuracion.cabecera.descripcion}}</td>
           <td>{{order.descripcion}}</td>
           <td class="row">
             <div class="col">
-              <button class="btn btn-danger"  pTooltip="Eliminar"
+              <button class="btn btn-danger"  pTooltip="Eliminar" (click)="eliminar(order.id_plan)"
                 tooltipPosition="top"> <i class="pi pi-trash"></i></button>
             </div>
             <div class="col">
